@@ -101,9 +101,9 @@
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
 					<driver>org.postgresql.Driver</driver>
-					<url>jdbc:postgresql://localhost/cycle</url> <!-- fix: jdbc:mysql://localhost:3306/dba -->
+					<url>jdbc:postgresql://localhost/cycle</url>
 					<user>postgres</user>
-					<password>armando1</password>
+					<password></password>
 					<schemas>
 						<schema>cycle</schema>
 					</schemas>
