@@ -5,6 +5,10 @@ import {Message} from 'primeng/primeng';
 import { Mensagens } from './../../model/mensagens';
 import { Materia } from './../../entity/materia.entity';
 import { MateriaService } from '../../service/materia.service';
+import {Router} from '@angular/router';
+
+import {ToastyService} from 'ng2-toasty';
+
 
 @Component({
   selector: 'app-materia-cadastro',
@@ -17,7 +21,9 @@ export class MateriaCadastroComponent implements OnInit {
   materia: Materia = new Materia();
 
   constructor(private materiaService: MateriaService,
-  private route: ActivatedRoute) { }
+  private route: ActivatedRoute,
+  private router: Router,
+  private toasty: ToastyService) { }
 
 
   ngOnInit() {
@@ -37,8 +43,8 @@ export class MateriaCadastroComponent implements OnInit {
   cadastrar() {
     this.materiaService.cadastrar(this.materia).then(res => {
       if (res) {
-        this.msgs.push(Mensagens.sucesso(`Matéria ${res.nome} cadastrada com sucesso`, 'Cadastro de Matéria'));
-        this.limpar();
+        this.toasty.success(`Matéria ${res.nome} cadastrada com sucesso`);
+        this.router.navigate(['/materias']);
       }
     });
   }
@@ -46,8 +52,8 @@ export class MateriaCadastroComponent implements OnInit {
   atualizar() {
     this.materiaService.atualizar(this.materia)
     .then(res => {
-      this.limpar();
-      this.msgs.push(Mensagens.MENSAGEM_ALTERAR_MATERIA_SUCESSO);
+      this.toasty.success(`Matéria atualizada com sucesso.`);
+      this.router.navigate(['/materias']);
     })
     .catch(error => {
       if (error.mensagemUsuario) {

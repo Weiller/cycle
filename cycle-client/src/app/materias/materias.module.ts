@@ -5,6 +5,8 @@ import { MateriaCadastroComponent } from './materia-cadastro/materia-cadastro.co
 import {Routes, RouterModule} from '@angular/router';
 import { Http, HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import {ToastyModule} from 'ng2-toasty';
+
 
 import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
   GrowlModule} from 'primeng/primeng';
@@ -20,7 +22,8 @@ import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
     InputTextModule,
     ButtonModule,
     GrowlModule,
-    RouterModule
+    RouterModule,
+    ToastyModule
   ],
   declarations: [
     MateriaPesquisaComponent,

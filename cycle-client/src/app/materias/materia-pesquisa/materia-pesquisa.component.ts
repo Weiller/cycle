@@ -1,3 +1,4 @@
+import { ToastyService } from 'ng2-toasty';
 import { Mensagens } from './../../model/mensagens';
 import { Materia } from './../../entity/materia.entity';
 import { MateriaService } from '../../service/materia.service';
@@ -15,7 +16,8 @@ export class MateriaPesquisaComponent implements OnInit {
   msgs: Message[] = [];
   materias = [];
   materia: Materia = new Materia();
-  constructor(private materiaService: MateriaService) { }
+  constructor(private materiaService: MateriaService,
+  private toasty: ToastyService) { }
 
   ngOnInit() {
     this.consultar();
@@ -36,7 +38,7 @@ export class MateriaPesquisaComponent implements OnInit {
 
   excluir(materia: Materia) {
     this.materiaService.deletar(materia.id).then(res => {
-      this.msgs.push(Mensagens.sucesso(`Matéria ${res.nome} excluída com sucesso.`, 'Exclusão de matéria.'));
+      this.toasty.success(`Matéria ${res.nome} excluída com sucesso.`);
       this.consultar();
     });
   }

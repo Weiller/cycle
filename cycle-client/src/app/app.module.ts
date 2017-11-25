@@ -7,6 +7,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {Routes, RouterModule} from '@angular/router';
 
+import {ToastyModule} from 'ng2-toasty';
+
 
 import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
   GrowlModule} from 'primeng/primeng';
@@ -35,6 +37,7 @@ const routes: Routes = [
     ButtonModule,
     GrowlModule,
     RouterModule.forRoot(routes),
+    ToastyModule.forRoot()
   ],
   providers: [MateriaService],
   bootstrap: [AppComponent]
