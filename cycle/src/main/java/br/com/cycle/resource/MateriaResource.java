@@ -40,6 +40,11 @@ public class MateriaResource {
       return materiaRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Materia buscarMateria(@PathVariable Long id){
+        return materiaService.buscarMateria(id);
+    }
+
     @PostMapping
     public ResponseEntity<Materia> salvar(@Valid @RequestBody Materia materia, HttpServletResponse response){
         Materia materiaSalva = materiaRepository.save(materia);

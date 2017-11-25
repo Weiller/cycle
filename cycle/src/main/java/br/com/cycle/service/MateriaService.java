@@ -18,22 +18,25 @@ public class MateriaService {
     private MateriaRepository materiaRepository;
 
     public ResponseEntity<Materia> atualizar(Long id, Materia materia) {
-        Optional<Materia> materiaSalva = Optional.ofNullable(materiaRepository.findOne(id));
+        Materia materiaSalva = buscarMateria(id);
 
-        materiaSalva.orElseThrow(() -> new EmptyResultDataAccessException(1));
+        BeanUtils.copyProperties(materia, materiaSalva, "id");
 
-        BeanUtils.copyProperties(materia, materiaSalva.get(), "id");
-
-        return ResponseEntity.ok(materiaRepository.save(materiaSalva.get()));
+        return ResponseEntity.ok(materiaRepository.save(materiaSalva));
     }
 
     public ResponseEntity<Materia> deletar(Long id) {
+        Materia materia = buscarMateria(id);
+
+        materiaRepository.delete(materia);
+
+        return ResponseEntity.ok(materia);
+    }
+
+    public Materia buscarMateria(Long id) {
         Optional<Materia> materia = Optional.ofNullable(materiaRepository.findOne(id));
 
         materia.orElseThrow(() -> new EmptyResultDataAccessException(1));
-
-        materiaRepository.delete(materia.get());
-
-        return ResponseEntity.ok(materia.get());
+        return materia.get();
     }
 }
