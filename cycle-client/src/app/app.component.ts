@@ -1,4 +1,3 @@
-import { AppService } from './app.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,13 +9,12 @@ export class AppComponent implements OnInit {
   title = 'app';
   pagina: string;
 
-  constructor(private appService: AppService) {
+  constructor() {
 
   }
 
   ngOnInit() {
     this.pagina = '<app-materia></app-materia>';
-    this.appService.consultar();
   }
 
 }

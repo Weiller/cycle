@@ -1,7 +1,9 @@
+import { Mensagens } from './../model/mensagens';
 import { Materia } from './../../entity/materia.entity';
-import { MateriaService } from './materia.service';
+import { MateriaService } from '../service/materia.service';
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {Message} from 'primeng/primeng';
 
 @Component({
   selector: 'app-materia',
@@ -10,6 +12,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class MateriaComponent implements OnInit {
 
+  msgs: Message[] = [];
   materias = [];
   materia: Materia = new Materia();
   constructor(private materiaService: MateriaService) { }
@@ -31,22 +34,14 @@ export class MateriaComponent implements OnInit {
     this.materia = new Materia();
   }
 
-  cadastrarMateria() {
-    this.materiaService.cadastrar(this.materia).then(res => {
-      if (res) {
-        this.limpar();
-        this.consultar();
-      }
-    });
-  }
-
   excluir(materia: Materia) {
     this.materiaService.deletar(materia.id).then(res => {
+      this.msgs.push(Mensagens.sucesso(`Matéria ${res.nome} excluída com sucesso.`, 'Exclusão de matéria.'));
       this.consultar();
     });
   }
 
-  atualizar(materia: Materia) {
+  selecionar(materia: Materia) {
     this.materia = materia;
   }
 }

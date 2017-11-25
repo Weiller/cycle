@@ -103,7 +103,7 @@
 					<driver>org.postgresql.Driver</driver>
 					<url>jdbc:postgresql://localhost/cycle</url>
 					<user>postgres</user>
-					<password></password>
+					<password>armando1</password>
 					<schemas>
 						<schema>cycle</schema>
 					</schemas>

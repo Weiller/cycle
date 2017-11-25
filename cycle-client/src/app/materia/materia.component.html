@@ -1,19 +1,16 @@
+<p-growl [(value)]="msgs"></p-growl>
 <p-dataTable [value]="materias">
   <p-column field="id" header="Codigo"></p-column>
   <p-column field="nome" header="Nome"></p-column>
   <p-column header="Ação">
     <ng-template let-materia="rowData" pTemplate="body">
-        <button pButton (click)="atualizar(materia)" label="Atualizar"></button>
+        <button pButton (click)="selecionar(materia)" label="Atualizar"></button>
       <button pButton (click)="excluir(materia)" label="Excluir"></button>
     </ng-template>
   </p-column>
 </p-dataTable>
 <br/>
 
-<form (ngSubmit)="cadastrarMateria()">
-  <input type="text" pInputText [(ngModel)]="materia.nome" name="nome" />
-  <button pButton type="submit" label="Nova Matéria"></button>
-</form>
-
+<button pButton routerLink="/materias/novo" label="Nova Matéria"></button>
 
 
