@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { ToastyService } from 'ng2-toasty';
 import { Mensagens } from './../../model/mensagens';
 import { Materia } from './../../entity/materia.entity';
@@ -16,11 +17,14 @@ export class MateriaPesquisaComponent implements OnInit {
   msgs: Message[] = [];
   materias = [];
   materia: Materia = new Materia();
+
   constructor(private materiaService: MateriaService,
-  private toasty: ToastyService) { }
+  private toasty: ToastyService,
+  private title: Title) { }
 
   ngOnInit() {
     this.consultar();
+    this.title.setTitle('Pesquisa de lançamento');
   }
 
   consultar() {

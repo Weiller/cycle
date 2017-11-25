@@ -1,0 +1,23 @@
+import { NgModule } from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { MateriaCadastroComponent } from './materias/materia-cadastro/materia-cadastro.component';
+import { MateriaPesquisaComponent } from './materias/materia-pesquisa/materia-pesquisa.component';
+
+
+const routes: Routes = [
+  {path: '', redirectTo: 'materias', pathMatch: 'full'},
+  {path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent},
+  {path: '**', redirectTo: 'pagina-nao-encontrada'}
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AppRoutingModule { }

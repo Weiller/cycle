@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Message} from 'primeng/primeng';
@@ -23,12 +24,18 @@ export class MateriaCadastroComponent implements OnInit {
   constructor(private materiaService: MateriaService,
   private route: ActivatedRoute,
   private router: Router,
-  private toasty: ToastyService) { }
+  private toasty: ToastyService,
+  private title: Title) { }
 
 
   ngOnInit() {
-    if (this.route.snapshot.params['id']) {
-        this.buscarMateria(this.route.snapshot.params['id']);
+
+    const codigoMateria = this.route.snapshot.params['id'];
+
+    if (codigoMateria) {
+        this.buscarMateria(codigoMateria);
+    } else {
+      this.title.setTitle('Cadastro de matéria');
     }
   }
 
@@ -67,6 +74,7 @@ export class MateriaCadastroComponent implements OnInit {
   buscarMateria(id: number) {
     this.materiaService.consultarMateria(id).then(res => {
       this.materia = res;
+      this.title.setTitle(`Edição de matéria: ${this.materia.nome}`);
     });
   }
 
