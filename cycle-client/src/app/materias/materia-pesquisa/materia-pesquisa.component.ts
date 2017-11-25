@@ -1,16 +1,16 @@
-import { Mensagens } from './../model/mensagens';
+import { Mensagens } from './../../model/mensagens';
 import { Materia } from './../../entity/materia.entity';
-import { MateriaService } from '../service/materia.service';
+import { MateriaService } from '../../service/materia.service';
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Message} from 'primeng/primeng';
 
 @Component({
   selector: 'app-materia',
-  templateUrl: './materia.component.html',
-  styleUrls: ['./materia.component.css']
+  templateUrl: './materia-pesquisa.component.html',
+  styleUrls: ['./materia-pesquisa.component.css']
 })
-export class MateriaComponent implements OnInit {
+export class MateriaPesquisaComponent implements OnInit {
 
   msgs: Message[] = [];
   materias = [];
