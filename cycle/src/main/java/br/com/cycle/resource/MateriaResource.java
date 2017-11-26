@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,16 +37,19 @@ public class MateriaResource {
 
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
     public List<Materia> buscarTodos(){
       return materiaRepository.findAll();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
     public Materia buscarMateria(@PathVariable Long id){
         return materiaService.buscarMateria(id);
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
     public ResponseEntity<Materia> salvar(@Valid @RequestBody Materia materia, HttpServletResponse response){
         Materia materiaSalva = materiaRepository.save(materia);
 
@@ -55,11 +59,13 @@ public class MateriaResource {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
     public ResponseEntity<Materia> atualizar(@PathVariable Long id, @Valid @RequestBody Materia materia){
         return materiaService.atualizar(id, materia);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
     public ResponseEntity<Materia> deletar(@PathVariable Long id){
         return materiaService.deletar(id);
     }

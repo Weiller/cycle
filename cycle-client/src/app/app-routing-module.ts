@@ -7,7 +7,7 @@ import { MateriaPesquisaComponent } from './materias/materia-pesquisa/materia-pe
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'materias', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent},
   {path: '**', redirectTo: 'pagina-nao-encontrada'}
 ];

@@ -33,7 +33,9 @@ export class MateriaPesquisaComponent implements OnInit {
         console.log(materias);
         this.materias = materias;
       }
-    );
+    ).catch(erro => {
+      this.toasty.error('Ocorreu um erro ao consultar');
+    });
   }
 
   limpar() {

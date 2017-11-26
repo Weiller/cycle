@@ -1,3 +1,5 @@
+import { SegurancaService } from './seguranca/seguranca.service';
+import { SegurancaModule } from './seguranca/seguranca.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +25,7 @@ import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
     PaginaNaoEncontradaComponent
   ],
   imports: [
+    SegurancaModule,
     MateriasModule,
     FormsModule,
     BrowserModule,
@@ -35,7 +38,7 @@ import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
     AppRoutingModule,
     ToastyModule.forRoot()
   ],
-  providers: [MateriaService],
+  providers: [MateriaService, SegurancaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
