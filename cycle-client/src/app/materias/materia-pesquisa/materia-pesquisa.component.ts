@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Title } from '@angular/platform-browser';
 import { ToastyService } from 'ng2-toasty';
 import { Mensagens } from './../../model/mensagens';
@@ -20,7 +21,8 @@ export class MateriaPesquisaComponent implements OnInit {
 
   constructor(private materiaService: MateriaService,
   private toasty: ToastyService,
-  private title: Title) { }
+  private title: Title,
+  private errorHandle: ErrorHandlerService) { }
 
   ngOnInit() {
     this.consultar();
@@ -34,7 +36,7 @@ export class MateriaPesquisaComponent implements OnInit {
         this.materias = materias;
       }
     ).catch(erro => {
-      this.toasty.error('Ocorreu um erro ao consultar');
+      this.errorHandle.handle(erro);
     });
   }
 

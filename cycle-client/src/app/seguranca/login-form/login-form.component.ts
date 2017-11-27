@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { SegurancaService } from './../seguranca.service';
 import { Usuario } from './../../entity/usuario.entity';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,8 @@ export class LoginFormComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
 
-  constructor(private segurancaService: SegurancaService) { }
+  constructor(private segurancaService: SegurancaService,
+  private handleError: ErrorHandlerService) { }
 
   ngOnInit() {
   }
@@ -19,7 +21,10 @@ export class LoginFormComponent implements OnInit {
   logar() {
     this.segurancaService.logar(this.usuario).then(res => {
       console.log(res);
+    }).catch(error => {
+      this.handleError.handle(error);
     });
+    this.usuario.senha = '';
   }
 
 }

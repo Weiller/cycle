@@ -1,0 +1,18 @@
+.cinza{
+  color: lightslategrey;
+}
+
+h1{
+  text-align: center;
+}
+
+.centralizar{
+  text-align: center;
+}
+
+a{
+  font-size: 30px;
+  text-decoration: none;
+  color: brown;
+  text-align: center;
+}

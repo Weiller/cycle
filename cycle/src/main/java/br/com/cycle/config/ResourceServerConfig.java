@@ -21,36 +21,36 @@ import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecur
 @EnableWebSecurity
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true) //habilitar segurança nos métodos
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
-	
-	@Autowired
-	private UserDetailsService userDetailsService;
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
 
-	@Autowired
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-	}
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Autowired
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
 
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/login").permitAll().anyRequest().authenticated()
-		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().csrf().disable();
-	}
-	
-	@Override
-	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-		resources.stateless(true);
-	}
-	
-	@Bean
-	public MethodSecurityExpressionHandler createExpressionHandler() {
-		return new OAuth2MethodSecurityExpressionHandler();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/login").permitAll().anyRequest().authenticated()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().csrf().disable();
+    }
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+        resources.stateless(true);
+    }
+
+    @Bean
+    public MethodSecurityExpressionHandler createExpressionHandler() {
+        return new OAuth2MethodSecurityExpressionHandler();
+    }
 }

@@ -1,6 +1,6 @@
+import { AuthHttp } from 'angular2-jwt';
 import { Materia } from './../entity/materia.entity';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 
@@ -11,7 +11,7 @@ export class MateriaService {
   materia = Materia;
   materias: any = [];
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
 
   cadastrar(materia: Materia): Promise<Materia> {
