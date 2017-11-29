@@ -1,3 +1,5 @@
+import { NaoAutorizadoComponent } from './nao-autorizado/nao-autorizado.component';
+import { PaginaNaoEncontradaComponent } from './../core/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +10,15 @@ import {ToastyModule} from 'ng2-toasty';
 
 
   const routes: Routes = [
-    {path: 'login', component: LoginFormComponent}
+    {
+      path: 'login',
+      component: LoginFormComponent
+    },
+
+    {
+      path: 'pagina-nao-autorizada',
+      component: NaoAutorizadoComponent
+    }
   ];
 
 

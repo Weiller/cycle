@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../core/error-handler.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
@@ -15,7 +16,8 @@ export class SegurancaService {
   constructor(private http: Http,
   private jwtHelper: JwtHelper,
   private toasty: ToastyService,
-  private router: Router) {
+  private router: Router,
+  private errorHandler: ErrorHandlerService) {
     this.carregarToken();
    }
 
@@ -71,6 +73,18 @@ export class SegurancaService {
   private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('token', token);
+  }
+
+  temPermissao(permissao: string) {
+    return this.jwtPayload && this.jwtPayload.authorities &&  this.jwtPayload.authorities.includes(permissao);
+  }
+
+  public temQualquerPermissao(roles) {
+    for (const role of roles) {
+      if (this.temPermissao(role)) {
+        return true;
+      }
+    }
   }
 
   private carregarToken() {

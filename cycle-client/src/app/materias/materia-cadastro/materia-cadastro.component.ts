@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute} from '@angular/router';
@@ -25,7 +26,8 @@ export class MateriaCadastroComponent implements OnInit {
   private route: ActivatedRoute,
   private router: Router,
   private toasty: ToastyService,
-  private title: Title) { }
+  private title: Title,
+  private erroHandler: ErrorHandlerService) { }
 
 
   ngOnInit() {
@@ -53,6 +55,8 @@ export class MateriaCadastroComponent implements OnInit {
         this.toasty.success(`Matéria ${res.nome} cadastrada com sucesso`);
         this.router.navigate(['/materias']);
       }
+    }).catch(erro => {
+      this.erroHandler.handle(erro);
     });
   }
 
@@ -66,7 +70,7 @@ export class MateriaCadastroComponent implements OnInit {
       if (error.mensagemUsuario) {
         this.msgs.push(Mensagens.erro(error.mensagemUsuario, 'Alteração de matéria'));
       } else {
-        this.msgs.push(Mensagens.MENSAGEM_ALTERAR_MATERIA_ERRO);
+        this.erroHandler.handle(error);
       }
     });
   }

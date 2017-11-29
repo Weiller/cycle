@@ -1,3 +1,4 @@
+import { NaoAutorizadoComponent } from './seguranca/nao-autorizado/nao-autorizado.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +19,8 @@ import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NaoAutorizadoComponent
     ],
   imports: [
     SegurancaModule,

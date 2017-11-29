@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { SegurancaService } from './seguranca.service';
 import { CycleHttp } from './cycle-http';
 import { FormsModule } from '@angular/forms';
@@ -33,8 +34,9 @@ export function authHttpServiceFactory(auth: SegurancaService, http: Http, optio
     ButtonModule,
     GrowlModule
   ],
-  declarations: [LoginFormComponent, NaoAutorizadoComponent],
+  declarations: [LoginFormComponent],
   providers: [
+    AuthGuard,
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,

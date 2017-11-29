@@ -17,13 +17,13 @@ export class MateriaService {
   cadastrar(materia: Materia): Promise<Materia> {
     return this.http.post('http://localhost:8080/materias', materia)
     .map(res => res.json())
-    .catch((error: any) => Observable.throw(error.json() || 'Server error')).toPromise();
+    .catch((error: any) => Observable.throw(error || 'Server error')).toPromise();
   }
 
   atualizar(materia: Materia): Promise<Materia> {
    return this.http.put(`http://localhost:8080/materias/${materia.id}`, materia)
     .map((res) => res.json())
-    .catch((error: any) => Observable.throw(error.json() || 'Server error')).toPromise();
+    .catch((error: any) => Observable.throw(error || 'Server error')).toPromise();
   }
 
   consultar(): Promise<any> {

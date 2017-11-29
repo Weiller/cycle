@@ -1,3 +1,4 @@
+import { NotAuthenticatedError } from './../seguranca/cycle-http';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
@@ -18,6 +19,9 @@ export class ErrorHandlerService {
     if (typeof errorResponse === 'string') {
       msg = errorResponse;
 
+    } else if (errorResponse instanceof NotAuthenticatedError) {
+      msg = 'Sua sessão expirou.';
+      this.router.navigate(['/login']);
     } else if (errorResponse instanceof Response
         && errorResponse.status >= 400 && errorResponse.status <= 499) {
       let errors;
