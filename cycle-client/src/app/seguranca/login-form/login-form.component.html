@@ -1,8 +1,4 @@
 <form (ngSubmit)="logar()">
-
-  {{segurancaService.jwtPayload | json}}
-
-
   <input type="text" pInputText [(ngModel)]="usuario.email" name="email" />
   <input type="text" pInputText [(ngModel)]="usuario.senha" name="senha" />
   <button pButton type="submit" label="Logar"></button>

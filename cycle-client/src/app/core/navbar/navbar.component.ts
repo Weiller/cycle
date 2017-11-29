@@ -9,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   constructor(private authService: SegurancaService) { }
+  nomeUsuario: string;
 
   ngOnInit() {
+    if (this.authService.jwtPayload) {
+      this.nomeUsuario = this.authService.jwtPayload.nome;
+    }
   }
 
 }
