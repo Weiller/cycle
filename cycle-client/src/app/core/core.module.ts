@@ -1,4 +1,8 @@
-import { Title } from '@angular/platform-browser';
+import { InputTextModule, ButtonModule, GrowlModule, DataTableModule, SharedModule } from 'primeng/primeng';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { CicloService } from './../service/ciclo.service';
+import { Title, BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,6 +18,14 @@ import {ToastyModule} from 'ng2-toasty';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    BrowserModule,
+    HttpModule,
+    DataTableModule,
+    SharedModule,
+    InputTextModule,
+    ButtonModule,
+    GrowlModule,
     ToastyModule.forRoot()
   ],
   declarations: [PaginaNaoEncontradaComponent,
@@ -24,7 +36,8 @@ import {ToastyModule} from 'ng2-toasty';
       Title,
       ErrorHandlerService,
       MateriaService,
-      SegurancaService
+      SegurancaService,
+      CicloService
     ],
 
     exports: [

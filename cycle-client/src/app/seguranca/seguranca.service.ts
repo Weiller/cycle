@@ -1,4 +1,3 @@
-import { ErrorHandlerService } from './../core/error-handler.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
@@ -16,8 +15,7 @@ export class SegurancaService {
   constructor(private http: Http,
   private jwtHelper: JwtHelper,
   private toasty: ToastyService,
-  private router: Router,
-  private errorHandler: ErrorHandlerService) {
+  private router: Router) {
     this.carregarToken();
    }
 

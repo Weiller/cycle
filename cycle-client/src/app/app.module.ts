@@ -1,3 +1,4 @@
+import { CiclosModule } from './ciclos/ciclos.module';
 import { NaoAutorizadoComponent } from './seguranca/nao-autorizado/nao-autorizado.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,9 +15,6 @@ import { MateriaCadastroComponent } from './materias/materia-cadastro/materia-ca
 import { MateriaPesquisaComponent } from './materias/materia-pesquisa/materia-pesquisa.component';
 import { MateriasModule } from './materias/materias.module';
 
-import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
-  GrowlModule} from 'primeng/primeng';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,15 +24,8 @@ import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
     SegurancaModule,
     MateriasModule,
     CoreModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserModule,
-    HttpModule,
-    DataTableModule,
-    SharedModule,
-    InputTextModule,
-    ButtonModule,
-    GrowlModule
+    CiclosModule,
+    AppRoutingModule
   ],
 
   providers: [],
