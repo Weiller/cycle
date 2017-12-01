@@ -1,13 +1,16 @@
 package br.com.cycle.entity;
 
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "CICLO", schema = "CYCLE")
@@ -16,6 +19,7 @@ public class Ciclo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_CICLO")
+    @Column(name = "codigo")
     private Long id;
 
     @Column(name = "nome")
@@ -25,7 +29,8 @@ public class Ciclo {
     private Long totalHora;
 
     @Column(name = "data_criacao")
-    private LocalDate dataCriacao;
+    @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
+    private LocalDateTime dataCriacao;
 
     public Long getId() {
         return id;
@@ -51,11 +56,11 @@ public class Ciclo {
         this.totalHora = totalHora;
     }
 
-    public LocalDate getDataCriacao() {
+    public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
+    public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 

@@ -33,16 +33,16 @@ export class SegurancaService {
     .then(response => {
         this.armazenarToken(response.json().access_token);
         this.router.navigate(['/materias']);
-    }).catch(response => {
+    }).catch(error => {
 
-      if (response.status === 400) {
-        const responseJson = response.json();
+      if (error.status === 400) {
+        const responseJson = error.json();
         if (responseJson.error === 'invalid_grant') {
           return Promise.reject('Usuário ou senha inválido.');
         }
       }
 
-      return Promise.reject(response);
+      return Promise.reject(error);
     });
   }
 
@@ -83,6 +83,11 @@ export class SegurancaService {
         return true;
       }
     }
+  }
+
+  limparAcessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
   }
 
   private carregarToken() {

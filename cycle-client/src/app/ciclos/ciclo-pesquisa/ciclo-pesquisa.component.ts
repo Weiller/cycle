@@ -1,3 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { Ciclo } from './../../entity/ciclo.entity';
+import { CicloService } from './../../service/ciclo.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +12,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CicloPesquisaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cicloService: CicloService,
+  private handleError: ErrorHandlerService,
+  private toasty: ToastyService,
+  private route: ActivatedRoute) { }
+
+  ciclos: Ciclo[] = [];
+  ciclo: Ciclo;
 
   ngOnInit() {
+    const codigo: number = this.route.snapshot.params['codigo'];
+    this.consultar();
+  }
+
+
+  public consultar() {
+    this.cicloService.consultar().subscribe(response => {
+      this.ciclos = response;
+    }, error => {
+      this.handleError.handle(error);
+    });
+  }
+
+  public deletar(codigo: number) {
+    this.cicloService.deletar(codigo).subscribe(() => {
+      this.toasty.success('Ciclo de Estudo deletado com sucesso.');
+      this.consultar();
+    }, error => {
+      this.handleError.handle(error);
+    });
+  }
+
+  public selecionarCiclo(ciclo: Ciclo) {
+
   }
 
 }

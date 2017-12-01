@@ -1,15 +1,15 @@
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Message} from 'primeng/primeng';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Message } from 'primeng/primeng';
 import { Mensagens } from './../../model/mensagens';
 import { Materia } from './../../entity/materia.entity';
 import { MateriaService } from '../../service/materia.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
-import {ToastyService} from 'ng2-toasty';
+import { ToastyService } from 'ng2-toasty';
 
 
 @Component({
@@ -23,11 +23,11 @@ export class MateriaCadastroComponent implements OnInit {
   materia: Materia = new Materia();
 
   constructor(private materiaService: MateriaService,
-  private route: ActivatedRoute,
-  private router: Router,
-  private toasty: ToastyService,
-  private title: Title,
-  private erroHandler: ErrorHandlerService) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private toasty: ToastyService,
+    private title: Title,
+    private erroHandler: ErrorHandlerService) { }
 
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class MateriaCadastroComponent implements OnInit {
     const codigoMateria = this.route.snapshot.params['id'];
 
     if (codigoMateria) {
-        this.buscarMateria(codigoMateria);
+      this.buscarMateria(codigoMateria);
     } else {
       this.title.setTitle('Cadastro de matéria');
     }
@@ -50,23 +50,21 @@ export class MateriaCadastroComponent implements OnInit {
   }
 
   cadastrar() {
-    this.materiaService.cadastrar(this.materia).then(res => {
+    this.materiaService.cadastrar(this.materia).subscribe(res => {
       if (res) {
         this.toasty.success(`Matéria ${res.nome} cadastrada com sucesso`);
         this.router.navigate(['/materias']);
       }
-    }).catch(erro => {
-      this.erroHandler.handle(erro);
+    }, error => {
+      this.erroHandler.handle(error);
     });
   }
 
   atualizar() {
-    this.materiaService.atualizar(this.materia)
-    .then(res => {
+    this.materiaService.atualizar(this.materia).subscribe(res => {
       this.toasty.success(`Matéria atualizada com sucesso.`);
       this.router.navigate(['/materias']);
-    })
-    .catch(error => {
+    }, error => {
       if (error.mensagemUsuario) {
         this.msgs.push(Mensagens.erro(error.mensagemUsuario, 'Alteração de matéria'));
       } else {

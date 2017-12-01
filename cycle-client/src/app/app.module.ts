@@ -1,5 +1,3 @@
-import { CiclosModule } from './ciclos/ciclos.module';
-import { NaoAutorizadoComponent } from './seguranca/nao-autorizado/nao-autorizado.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,10 +8,9 @@ import { CoreModule } from './core/core.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing-module';
-import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada/pagina-nao-encontrada.component';
-import { MateriaCadastroComponent } from './materias/materia-cadastro/materia-cadastro.component';
-import { MateriaPesquisaComponent } from './materias/materia-pesquisa/materia-pesquisa.component';
 import { MateriasModule } from './materias/materias.module';
+import { CiclosModule } from './ciclos/ciclos.module';
+import { NaoAutorizadoComponent } from './seguranca/nao-autorizado/nao-autorizado.component';
 
 @NgModule({
   declarations: [

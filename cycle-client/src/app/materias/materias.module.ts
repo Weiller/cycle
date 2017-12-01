@@ -1,14 +1,16 @@
-import { MateriasRoutingModule } from './materias-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MateriaPesquisaComponent } from './materia-pesquisa/materia-pesquisa.component';
-import { MateriaCadastroComponent } from './materia-cadastro/materia-cadastro.component';
 import { Http, HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+
+import { MateriasRoutingModule } from './materias-routing.module';
+import { MateriaPesquisaComponent } from './materia-pesquisa/materia-pesquisa.component';
+import { MateriaCadastroComponent } from './materia-cadastro/materia-cadastro.component';
+
 import {ToastyModule} from 'ng2-toasty';
 
 
-import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
+import {DataTableModule, InputTextModule, ButtonModule,
   GrowlModule} from 'primeng/primeng';
 
 
@@ -18,7 +20,6 @@ import {DataTableModule, SharedModule, InputTextModule, ButtonModule,
     FormsModule,
     HttpModule,
     DataTableModule,
-    SharedModule,
     InputTextModule,
     ButtonModule,
     GrowlModule,

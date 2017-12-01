@@ -45,9 +45,11 @@ export class MateriaPesquisaComponent implements OnInit {
   }
 
   excluir(materia: Materia) {
-    this.materiaService.deletar(materia.id).then(res => {
+    this.materiaService.deletar(materia.id).subscribe(res => {
       this.toasty.success(`Matéria ${res.nome} excluída com sucesso.`);
       this.consultar();
+    }, error => {
+      this.errorHandle.handle(error);
     });
   }
 

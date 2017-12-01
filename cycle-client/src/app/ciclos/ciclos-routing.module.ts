@@ -25,6 +25,13 @@ const routes: Routes = [
     component: CicloCadastroComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_GERAL'] }
+  },
+
+  {
+    path: 'ciclos/:codigo',
+    component: CicloCadastroComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_GERAL'] }
   }
 
 ];

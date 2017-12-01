@@ -1,3 +1,11 @@
-<p>
-  ciclo-pesquisa works!
-</p>
+<p-dataTable [value]="ciclos" [paginator]="true" [rows]="5" [responsive]="true">
+  <p-column field="nomeCiclo" header="Nome"></p-column>
+  <p-column field="totalHoras" header="Total de Horas"></p-column>
+  <p-column header="Ação">
+    <ng-template let-ciclo="rowData" pTemplate="body">
+      <button type="submit" pButton (click)="selecionarCiclo(ciclo)" icon="fa-pencil"></button>
+      <button pButton type="submit" icon="fa-trash" (click)="deletar(ciclo.codigo)"></button>
+    </ng-template>
+  </p-column>
+</p-dataTable>
+<button pButton routerLink="/ciclos/novo" label="Novo Ciclo"></button>

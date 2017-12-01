@@ -1,3 +1,7 @@
-<p>
-  {{!this.authService.isAccessTokenInvalido() ? this.authService.jwtPayload.nome : ''}}
-</p>
+<div *ngIf="!authService.isAccessTokenInvalido()">
+  <p>
+    {{this.authService.jwtPayload.nome}}
+  </p>
+
+  <button pButton label="Logout" (click)="logout()"></button>
+</div>
