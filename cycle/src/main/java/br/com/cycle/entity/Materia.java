@@ -2,9 +2,13 @@ package br.com.cycle.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,6 +26,15 @@ public class Materia {
     @NotNull
     private String nome;
 
+    @Column(name = "hora_estudo_ciclo")
+    @NotNull
+    private Long horasEstudoCiclo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_ciclo")
+    @NotNull
+    private Ciclo ciclo;
+
     public Long getId() {
         return id;
     }
@@ -36,6 +49,22 @@ public class Materia {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Long getHorasEstudoCiclo() {
+        return horasEstudoCiclo;
+    }
+
+    public void setHorasEstudoCiclo(Long horasEstudoCiclo) {
+        this.horasEstudoCiclo = horasEstudoCiclo;
+    }
+
+    public Ciclo getCiclo() {
+        return ciclo;
+    }
+
+    public void setCiclo(Ciclo ciclo) {
+        this.ciclo = ciclo;
     }
 
     @Override

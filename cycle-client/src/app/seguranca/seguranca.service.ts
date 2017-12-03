@@ -32,7 +32,7 @@ export class SegurancaService {
     return this.http.post(this.oauthUrl, body, { headers, withCredentials: true  }).toPromise()
     .then(response => {
         this.armazenarToken(response.json().access_token);
-        this.router.navigate(['/materias']);
+        this.router.navigate(['/ciclos']);
     }).catch(error => {
 
       if (error.status === 400) {

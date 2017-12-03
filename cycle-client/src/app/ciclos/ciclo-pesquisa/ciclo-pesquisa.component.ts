@@ -14,14 +14,12 @@ export class CicloPesquisaComponent implements OnInit {
 
   constructor(private cicloService: CicloService,
   private handleError: ErrorHandlerService,
-  private toasty: ToastyService,
-  private route: ActivatedRoute) { }
+  private toasty: ToastyService) { }
 
   ciclos: Ciclo[] = [];
   ciclo: Ciclo;
 
   ngOnInit() {
-    const codigo: number = this.route.snapshot.params['codigo'];
     this.consultar();
   }
 
@@ -41,10 +39,6 @@ export class CicloPesquisaComponent implements OnInit {
     }, error => {
       this.handleError.handle(error);
     });
-  }
-
-  public selecionarCiclo(ciclo: Ciclo) {
-
   }
 
 }

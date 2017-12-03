@@ -1,7 +1,8 @@
 package br.com.cycle.dto;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CicloDTO {
 
@@ -9,6 +10,8 @@ public class CicloDTO {
     private String nomeCiclo;
     private String totalHoras;
     private LocalDateTime dataCriacao;
+    private List<MateriaDTO> materias;
+    private List<MateriaDTO> materiasExcluir;
 
     public CicloDTO(){
         super();
@@ -51,5 +54,21 @@ public class CicloDTO {
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public List<MateriaDTO> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<MateriaDTO> materias) {
+        this.materias = materias;
+    }
+
+    public List<MateriaDTO> getMateriasExcluir() {
+        return materiasExcluir;
+    }
+
+    public void setMateriasExcluir(List<MateriaDTO> materiasExcluir) {
+        this.materiasExcluir = materiasExcluir;
     }
 }

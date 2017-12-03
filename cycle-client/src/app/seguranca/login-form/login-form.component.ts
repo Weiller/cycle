@@ -27,12 +27,12 @@ export class LoginFormComponent implements OnInit {
     if (this.segurancaService.isAccessTokenInvalido()) {
       this.segurancaService.obterNovoAccessToken().then(response => {
         if (!this.segurancaService.isAccessTokenInvalido()) {
-          this.router.navigate(['/materias']);
+          this.router.navigate(['/ciclos']);
         }
         this.title.setTitle('Login');
       });
     } else {
-      this.router.navigate(['/materias']);
+      this.router.navigate(['/ciclos']);
     }
   }
 

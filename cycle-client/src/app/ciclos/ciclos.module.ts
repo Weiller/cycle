@@ -6,7 +6,10 @@ import { CiclosRoutingModule } from './ciclos-routing.module';
 import { CicloPesquisaComponent } from './ciclo-pesquisa/ciclo-pesquisa.component';
 import { CicloCadastroComponent } from './ciclo-cadastro/ciclo-cadastro.component';
 
-import { InputTextModule, ButtonModule, InputMaskModule, DataTableModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, InputMaskModule, DataTableModule, FieldsetModule } from 'primeng/primeng';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MateriasCicloComponent } from './materias-ciclo/materias-ciclo.component';
+import { CadastroGeralCicloComponent } from './cadastro-geral-ciclo/cadastro-geral-ciclo.component';
 
 @NgModule({
   imports: [
@@ -16,11 +19,15 @@ import { InputTextModule, ButtonModule, InputMaskModule, DataTableModule } from 
     InputTextModule,
     ButtonModule,
     InputMaskModule,
-    DataTableModule
+    DataTableModule,
+    FieldsetModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     CicloPesquisaComponent,
-    CicloCadastroComponent
+    CicloCadastroComponent,
+    MateriasCicloComponent,
+    CadastroGeralCicloComponent
   ]
 })
 export class CiclosModule { }

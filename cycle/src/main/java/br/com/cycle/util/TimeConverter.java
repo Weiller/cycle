@@ -21,6 +21,18 @@ public class TimeConverter {
         Long minutosEmSegundos = segundosEmHoras % HORA_EM_SEGUNDOS;
         Long minutos = minutosEmSegundos / MINUTO_EM_SEGUNDOS;
 
-        return horas + ":" + minutos;
+        String horaString = transformarEmString(horas);
+        String minutoString = transformarEmString(minutos);
+
+        return horaString + ":" + minutoString;
+    }
+
+    private static String transformarEmString(Long valor) {
+        String valorString = valor.toString();
+        if (valor < 10) {
+            valorString = "0" + valor;
+        }
+
+        return valorString;
     }
 }

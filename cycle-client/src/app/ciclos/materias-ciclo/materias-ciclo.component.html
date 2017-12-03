@@ -1,0 +1,21 @@
+<p-fieldset legend="Materias" [toggleable]="true">
+  <label for="imateria">Matéria</label>
+  <input pInputText id="imateria" [(ngModel)]="materia.nome" name="nomeMateria" type="text">
+
+  <label for="imateria">Horas</label>
+  <p-inputMask id="ihoras" mask="99:99" [(ngModel)]="materia.horasEstudoCiclo"
+  name="horasEstudoCiclo" class="horas" required type="text" size="5"> </p-inputMask>
+  <button pButton label="Inserir" (click)="inserirMateria()" type="button"></button>
+  <div class="table-materias">
+    <p-dataTable [(value)]="materias" [paginator]="true" [rows]="5">
+        <p-column field="nome" header="Nome"></p-column>
+        <p-column field="horasEstudoCiclo" header="Horas por Ciclo"></p-column>
+        <p-column header="Ação">
+          <ng-template let-materia="rowData" pTemplate="body">
+              <button pButton icon="fa-pencil"></button>
+              <button pButton icon="fa-trash" (click)="removerMateria(materia)"></button>
+          </ng-template>
+        </p-column>
+    </p-dataTable>
+  </div>
+</p-fieldset>

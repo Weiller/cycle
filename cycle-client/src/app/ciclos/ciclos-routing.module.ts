@@ -1,3 +1,4 @@
+import { CadastroGeralCicloComponent } from './cadastro-geral-ciclo/cadastro-geral-ciclo.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,14 +23,14 @@ const routes: Routes = [
 
   {
     path: 'ciclos/novo',
-    component: CicloCadastroComponent,
+    component: CadastroGeralCicloComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_GERAL'] }
   },
 
   {
     path: 'ciclos/:codigo',
-    component: CicloCadastroComponent,
+    component: CadastroGeralCicloComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_GERAL'] }
   }

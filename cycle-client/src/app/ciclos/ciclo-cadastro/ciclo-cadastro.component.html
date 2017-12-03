@@ -1,9 +1,17 @@
-<form  #ngCiclo="ngForm" (ngSubmit)="salvar(ngCiclo)">
-  <label for="inome">Ciclo de Estudo</label>
-  <input id="inome" pInputText type="text" [(ngModel)]="ciclo.nomeCiclo" name="nomeCiclo" required>
+<form #ngCiclo="ngForm" (ngSubmit)="salvar(ngCiclo)">
+  <p-fieldset legend="Ciclo de Estudo" [toggleable]="true">
+    <div class="ui-g">
 
-  <p>
-    <p-inputMask mask="99:99" [(ngModel)]="ciclo.totalHoras" name="totalHoras" required id="ihoras" type="text" size="5"> </p-inputMask>
-  </p>
-  <button pButton type="submit" label="Gravar" [disabled]="!ngCiclo.valid" ></button>
+      <div class="ui-g-12">
+        <label for="inome">Ciclo de Estudo</label>
+        <input id="inome" pInputText type="text" [(ngModel)]="ciclo.nomeCiclo" name="nomeCiclo" required>
+
+        <label for="ihoras">Horas</label>
+        <p-inputMask id="ihoras" mask="99:99" [(ngModel)]="ciclo.totalHoras" name="totalHoras" required type="text" size="5"> </p-inputMask>
+
+      </div>
+    </div>
+
+  </p-fieldset>
+  <br/>
 </form>

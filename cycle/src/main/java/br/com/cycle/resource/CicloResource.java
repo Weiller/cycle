@@ -27,7 +27,7 @@ public class CicloResource {
 
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
-    public ResponseEntity<Ciclo> salvar(@Valid @RequestBody CicloDTO cicloDto){
+    public ResponseEntity<CicloDTO> salvar(@Valid @RequestBody CicloDTO cicloDto){
         return this.cicloService.salvar(cicloDto);
     }
 
@@ -38,8 +38,7 @@ public class CicloResource {
     }
 
     @PutMapping("/{codigo}")
-    @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
-    public ResponseEntity<Ciclo> alterar(@RequestBody CicloDTO cicloDTO){
+    public ResponseEntity<CicloDTO> alterar(@RequestBody CicloDTO cicloDTO){
         return cicloService.alterar(cicloDTO);
     }
 
@@ -47,6 +46,11 @@ public class CicloResource {
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
     public void deletar(@PathVariable Long codigo){
         cicloService.deletar(codigo);
+    }
+
+    @GetMapping("/{codigo}")
+    public CicloDTO buscarCiclo(@PathVariable Long codigo){
+        return cicloService.buscarCiclo(codigo);
     }
 
 }

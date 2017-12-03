@@ -1,0 +1,12 @@
+<app-ciclo-cadastro [ciclo]="ciclo"></app-ciclo-cadastro>
+
+<app-materias-ciclo
+(materiaAdicionada)="materiaAdicionada($event)"
+(materiaExcluida)="materiaExcluida($event)"
+[materias]="materias"
+></app-materias-ciclo>
+
+<br/>
+<button pButton label="Gravar" (click)="salvar()"></button>
+<button pButton label="Cancelar" class="ui-button-danger" routerLink="/ciclos"></button>
+
