@@ -2,9 +2,9 @@ package br.com.cycle.dto;
 
 public class MateriaDTO {
 
-    public Long id;
-    public String nome;
-    public String horasEstudoCiclo;
+    private Long id;
+    private String nome;
+    private String horasEstudoCiclo;
 
     public Long getId() {
         return id;

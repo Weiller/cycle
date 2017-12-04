@@ -1,5 +1,8 @@
 package br.com.cycle.exceptionhandler;
 
+import br.com.cycle.exceptionhandler.exception.NegocioException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -16,7 +19,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @ControllerAdvice
@@ -25,6 +27,9 @@ public class CycleExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -42,6 +47,15 @@ public class CycleExceptionHandler extends ResponseEntityExceptionHandler {
         Erro erros = new Erro(mensagemUsuario, mensagemDesenvolvedor);
 
         return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler({NegocioException.class})
+    public ResponseEntity<Object> handleBusinessViolationException(NegocioException e, WebRequest request) {
+        String mensagemUsuario = messageSource.getMessage(e.getMessage(), null, LocaleContextHolder.getLocale());
+        String mensagemDesenvolvedor = e.toString();
+        log.error(mensagemUsuario, e);
+
+        return ResponseEntity.badRequest().body(new Erro(mensagemUsuario, mensagemDesenvolvedor));
     }
 
     public List<Erro> listaErro(BindingResult bindingResult) {

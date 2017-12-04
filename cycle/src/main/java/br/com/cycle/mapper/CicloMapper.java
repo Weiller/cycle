@@ -12,6 +12,9 @@ import java.util.List;
 
 public class CicloMapper {
 
+    private CicloMapper() {
+    }
+
     public static Ciclo cicloDtoToCiclo(CicloDTO cicloDto) {
         return preencherCiclo(cicloDto);
     }

@@ -1,3 +1,5 @@
+import { ValidacaoFormException } from './../../exception/validacao.form.exception';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
@@ -36,13 +38,22 @@ export class CadastroGeralCicloComponent implements OnInit {
   }
 
   materiaExcluida(materia: Materia) {
+    this.removerItemLista(materia);
+
+    if (materia.id) {
+      this.materiasExcluir.push(materia);
+    }
+  }
+
+  materiaAlterada(materia: Materia) {
+    this.removerItemLista(materia);
+  }
+
+  removerItemLista(materia: Materia) {
     const index = this.materias.indexOf(materia);
 
     if (index !== -1) {
       this.materias.splice(index, 1);
-    }
-    if (materia.id) {
-      this.materiasExcluir.push(materia);
     }
   }
 
@@ -55,11 +66,28 @@ export class CadastroGeralCicloComponent implements OnInit {
     });
   }
 
-  salvar() {
-    if (!this.ciclo.codigo) {
-      this.cadastrar();
-    } else {
-      this.alterar();
+  salvar(ngCiclo: NgForm) {
+    try {
+      this.preValidate();
+      if (!this.ciclo.codigo) {
+        this.cadastrar();
+      } else {
+        this.alterar();
+      }
+    } catch (e) {
+      this.handleError.handle(e.message);
+      console.log(e);
+    }
+  }
+
+  preValidate() {
+    this.verificarAtributo(this.ciclo.nomeCiclo, 'Ciclo de Estudo');
+    this.verificarAtributo(this.ciclo.totalHoras, 'Horas');
+  }
+
+  verificarAtributo(valor: any, campo: string) {
+    if (!valor) {
+      throw new ValidacaoFormException(`O campo ${campo} é obrigatório.`);
     }
   }
 
@@ -68,7 +96,11 @@ export class CadastroGeralCicloComponent implements OnInit {
     this.cicloService.cadastrar(cicloDTO).subscribe(response => {
       this.toasty.success('Ciclo cadastrado com sucesso.');
     }, error => {
-      this.handleError.handle(error);
+      if (error.json().mensagemUsuario) {
+        this.handleError.handle(error.json().mensagemUsuario);
+      } else {
+        this.handleError.handle(error);
+      }
     });
   }
 
@@ -77,7 +109,11 @@ export class CadastroGeralCicloComponent implements OnInit {
     this.cicloService.alterar(cicloDTO).subscribe(response => {
       this.toasty.success('Ciclo alterado com sucesso.');
     }, error => {
-      this.handleError.handle(error);
+      if (error.json().mensagemUsuario) {
+        this.handleError.handle(error.json().mensagemUsuario);
+      } else {
+        this.handleError.handle(error);
+      }
     });
   }
 

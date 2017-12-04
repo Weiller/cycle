@@ -1,7 +1,6 @@
 package br.com.cycle.resource;
 
 import br.com.cycle.dto.CicloDTO;
-import br.com.cycle.entity.Ciclo;
 import br.com.cycle.service.CicloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

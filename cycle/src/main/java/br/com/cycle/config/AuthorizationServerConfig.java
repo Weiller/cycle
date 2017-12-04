@@ -23,7 +23,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Autowired
 	private AuthenticationManager authenticationManager; 	
-	
+
+	private static final String GRANT_TYPE_PASS = "password";
 	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -31,7 +32,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.withClient("angular")
 		.secret("@ngul@r")
 		.scopes("read", "write")
-		.authorizedGrantTypes("password", "refresh_token")
+		.authorizedGrantTypes(GRANT_TYPE_PASS, "refresh_token")
 		.accessTokenValiditySeconds(1800)
 		.refreshTokenValiditySeconds(3600 * 24)
 
@@ -39,7 +40,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.withClient("mobile")
 		.secret("m0b1l3")
 		.scopes("read")
-		.authorizedGrantTypes("password", "refresh_token")
+		.authorizedGrantTypes(GRANT_TYPE_PASS, "refresh_token")
 		.accessTokenValiditySeconds(1800)
 		.refreshTokenValiditySeconds(3600 * 24);
 	}

@@ -11,7 +11,7 @@ public class UsuarioSistema extends User {
 
 	private static final long serialVersionUID = 1L;
 
-	private Usuario usuario;
+	private transient Usuario usuario;
 
 	public UsuarioSistema(Usuario usuario, Collection<? extends GrantedAuthority> authorities) {
 		super(usuario.getEmail(), usuario.getSenha(), authorities);
@@ -22,4 +22,21 @@ public class UsuarioSistema extends User {
 		return usuario;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+
+		UsuarioSistema that = (UsuarioSistema) o;
+
+		return usuario != null ? usuario.equals(that.usuario) : that.usuario == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (usuario != null ? usuario.hashCode() : 0);
+		return result;
+	}
 }

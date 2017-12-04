@@ -44,12 +44,12 @@ public class RefreshCookiePreProcessorFilter implements Filter {
 	
 	@Override
 	public void destroy() {
-		
+		//Não há necessidade de implementar.
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		
+		//Não há necessidade de implementar.
 	}
 	
 	

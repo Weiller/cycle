@@ -7,6 +7,9 @@ public class TimeConverter {
     public static final Long MINUTO_EM_SEGUNDOS = 60L;
 
 
+    private TimeConverter(){
+    }
+
     public static Long horasEmSegundos(String totalHoras) {
         String[] arrayHoras = totalHoras.split(":");
         Integer horas = Integer.parseInt(arrayHoras[0]);

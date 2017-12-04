@@ -6,6 +6,9 @@ import br.com.cycle.util.TimeConverter;
 
 public class MateriaMapper {
 
+    private MateriaMapper() {
+    }
+
     public static MateriaDTO materiaToMateriaDTO(Materia materia) {
         MateriaDTO materiaDTO = new MateriaDTO();
 

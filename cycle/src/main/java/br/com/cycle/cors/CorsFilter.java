@@ -49,10 +49,11 @@ public class CorsFilter implements Filter {
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		//Sem necessidade de implementar.
 	}
 
 	@Override
 	public void destroy() {
-
+		//Sem necessidade de implementar.
 	}
 }
