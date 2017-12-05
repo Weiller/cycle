@@ -6,4 +6,4 @@ Utiliza as seguintes tecnologias:
 - Spring Boot
 - Spring Data
 - Flyway
-- Jax-rs
+- Oauth2, JWT
