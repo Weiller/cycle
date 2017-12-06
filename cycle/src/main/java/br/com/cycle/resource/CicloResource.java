@@ -1,8 +1,11 @@
 package br.com.cycle.resource;
 
 import br.com.cycle.dto.CicloDTO;
+import br.com.cycle.repository.filter.CicloFilter;
 import br.com.cycle.service.CicloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,8 +35,8 @@ public class CicloResource {
 
     @GetMapping
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
-    public List<CicloDTO> listarTodos(){
-        return cicloService.listarTodos();
+    public Page<CicloDTO> listarTodos(CicloFilter cicloFilter, Pageable pageable){
+        return cicloService.listarTodos(cicloFilter, pageable);
     }
 
     @PutMapping("/{codigo}")

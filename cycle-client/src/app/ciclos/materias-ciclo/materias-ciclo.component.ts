@@ -1,3 +1,5 @@
+import { ToastyService } from 'ng2-toasty';
+import { ValidacaoFormException } from './../../exception/validacao.form.exception';
 import { Materia } from './../../entity/materia.entity';
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
@@ -17,23 +19,40 @@ export class MateriasCicloComponent implements OnInit {
   @Output() materiaAlterada = new EventEmitter();
 
   materia = new Materia();
-  constructor() { }
+  constructor(private toasty: ToastyService) { }
 
   ngOnInit() {
   }
 
   adicionarMateria() {
-    this.materias.push(this.materia);
-    this.materiaAdicionada.emit(this.materia);
-    this.materia = new Materia();
+    try {
+      this.preValidate();
+      this.materias.push(this.materia);
+      this.materiaAdicionada.emit(this.materia);
+      this.materia = new Materia();
+    } catch (e) {
+      this.toasty.error(e.message);
+    }
   }
 
   alterarMateria(materia: Materia) {
+    this.preValidate();
     const index = this.materias.indexOf(this.materia);
 
     if (index !== -1) {
       this.materias.splice(index, 1);
       this.materias.push(materia);
+    }
+  }
+
+  preValidate() {
+    this.verificarAtributo(this.materia.nome, 'Matéria');
+    this.verificarAtributo(this.materia.horasEstudoCiclo, 'Horas');
+  }
+
+  verificarAtributo(valor: any, campo: string) {
+    if (!valor) {
+      throw new ValidacaoFormException(`O campo ${campo} é obrigatório.`);
     }
   }
 

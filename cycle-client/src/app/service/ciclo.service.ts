@@ -1,8 +1,11 @@
+import { Page } from './../entity/page.entity';
+import { CicloFilter } from './../filter/ciclo.filter';
 import { CicloDTO } from './../entity/cicloDTO.entity';
 import { ErrorHandlerService } from './../core/error-handler.service';
 import { Ciclo } from './../entity/ciclo.entity';
 import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
+import { URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs';
 
@@ -24,8 +27,18 @@ export class CicloService {
     }).catch(error => Observable.throw(error));
   }
 
-  consultar(): Observable<CicloDTO[]> {
-    return this.http.get('http://localhost:8080/ciclos').map(response => {
+  consultar(cicloFilter: CicloFilter): Observable<Page> {
+    const params = new URLSearchParams();
+
+      if (!cicloFilter.nome) {
+        cicloFilter.nome = '';
+      }
+
+      params.set('nome', cicloFilter.nome);
+      params.set('page', cicloFilter.page.toString());
+      params.set('size', cicloFilter.size.toString());
+
+    return this.http.get('http://localhost:8080/ciclos', { search: params } ).map(response => {
       return response.json();
     }).catch((error: any) => Observable.throw(error));
   }

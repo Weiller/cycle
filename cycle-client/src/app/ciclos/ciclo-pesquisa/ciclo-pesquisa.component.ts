@@ -1,9 +1,14 @@
 import { ActivatedRoute } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { Component, OnInit } from '@angular/core';
+
+import { Page } from './../../entity/page.entity';
+import { CicloFilter } from './../../filter/ciclo.filter';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Ciclo } from './../../entity/ciclo.entity';
 import { CicloService } from './../../service/ciclo.service';
-import { Component, OnInit } from '@angular/core';
+
+import { LazyLoadEvent } from 'primeng/components/common/api';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-ciclo-pesquisa',
@@ -16,20 +21,25 @@ export class CicloPesquisaComponent implements OnInit {
   private handleError: ErrorHandlerService,
   private toasty: ToastyService) { }
 
-  ciclos: Ciclo[] = [];
+  page = new Page();
   ciclo: Ciclo;
+  cicloFilter = new CicloFilter();
 
   ngOnInit() {
-    this.consultar();
   }
 
-
   public consultar() {
-    this.cicloService.consultar().subscribe(response => {
-      this.ciclos = response;
+    this.cicloService.consultar(this.cicloFilter).subscribe(response => {
+        this.page = response;
     }, error => {
       this.handleError.handle(error);
     });
+  }
+
+  public aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.cicloFilter.page = pagina;
+    this.consultar();
   }
 
   public deletar(codigo: number) {

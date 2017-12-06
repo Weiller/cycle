@@ -7,8 +7,12 @@ import br.com.cycle.exceptionhandler.exception.NegocioException;
 import br.com.cycle.mapper.CicloMapper;
 import br.com.cycle.mapper.MateriaMapper;
 import br.com.cycle.repository.CicloRepository;
+import br.com.cycle.repository.filter.CicloFilter;
 import br.com.cycle.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -58,14 +62,17 @@ public class CicloService {
         });
     }
 
-    public List<CicloDTO> listarTodos() {
+    public Page<CicloDTO> listarTodos(CicloFilter cicloFilter, Pageable pageable) {
         List<CicloDTO> ciclosDto = new ArrayList<>();
-        cicloRepository.findAll().forEach(ciclo -> {
+
+        Page<Ciclo> pageCiclo = cicloRepository.findAllByNomeIgnoreCaseContaining(cicloFilter.getNome(), pageable);
+
+        pageCiclo.forEach(ciclo -> {
             CicloDTO cicloDto = CicloMapper.cicloToCicloDto(ciclo);
             ciclosDto.add(cicloDto);
         });
 
-        return ciclosDto;
+        return new PageImpl<>(ciclosDto, pageable, pageCiclo.getTotalElements());
     }
 
     public void deletar(Long codigo) {
