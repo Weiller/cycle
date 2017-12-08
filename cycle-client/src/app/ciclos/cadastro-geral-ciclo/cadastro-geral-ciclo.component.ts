@@ -1,13 +1,16 @@
-import { ValidacaoFormException } from './../../exception/validacao.form.exception';
-import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+
+import { CicloForm } from './../ciclo-cadastro/ciclo.form';
+import { ValidacaoFormException } from './../../exception/validacao.form.exception';
 import { ErrorHandlerService } from './../../core/error-handler.service';
-import { ToastyService } from 'ng2-toasty';
 import { CicloService } from './../../service/ciclo.service';
 import { CicloDTO } from './../../entity/cicloDTO.entity';
 import { Materia } from './../../entity/materia.entity';
 import { Ciclo } from './../../entity/ciclo.entity';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-cadastro-geral-ciclo',
@@ -19,18 +22,25 @@ export class CadastroGeralCicloComponent implements OnInit {
   constructor(private cicloService: CicloService,
     private toasty: ToastyService,
     private handleError: ErrorHandlerService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private title: Title) { }
 
   ciclo: Ciclo = new Ciclo();
   materias: Materia[] = [];
   materiasExcluir: Materia[] = [];
+  cicloForm: CicloForm;
+
 
   ngOnInit() {
     const codigo = this.route.snapshot.params['codigo'];
-
     if (codigo) {
       this.consultarCiclo(codigo);
+      this.title.setTitle(`Alteração do Ciclo`);
+    } else {
+      this.title.setTitle(`Criação do Ciclo`);
     }
+
+    this.cicloForm = new CicloForm();
   }
 
   materiaAdicionada(materia: Materia) {
@@ -66,7 +76,7 @@ export class CadastroGeralCicloComponent implements OnInit {
     });
   }
 
-  salvar(ngCiclo: NgForm) {
+  salvar() {
     try {
       this.preValidate();
       if (!this.ciclo.codigo) {
@@ -75,6 +85,8 @@ export class CadastroGeralCicloComponent implements OnInit {
         this.alterar();
       }
     } catch (e) {
+      this.cicloForm.form.controls['nomeCiclo'].markAsTouched();
+      this.cicloForm.form.controls['totalHoras'].markAsTouched();
       this.handleError.handle(e.message);
       console.log(e);
     }

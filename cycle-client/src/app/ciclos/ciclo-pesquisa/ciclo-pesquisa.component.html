@@ -1,13 +1,14 @@
 <label for="ifilterNome">Nome</label>
 <input id="ifilterNome" pInputText type="text" [(ngModel)]="cicloFilter.nome" name="nomeCiclo">
 <button pButton type="submit" label="Pesquisar" (click)="consultar()"></button>
+<button pButton (click)="limpar()" label="Limpar"></button>
 
 
 <p-dataTable [value]="page.content"
   [paginator]="true" [rows]="cicloFilter.size"
   [lazy]="true" [totalRecords]="page.totalElements"
   (onLazyLoad)="aoMudarPagina($event)"
-  [responsive]="true">
+  [responsive]="true" #tableCiclos>
   <p-column field="nomeCiclo" header="Nome"></p-column>
   <p-column field="totalHoras" header="Total de Horas"></p-column>
   <p-column header="Ação">
@@ -18,3 +19,4 @@
   </p-column>
 </p-dataTable>
 <button pButton routerLink="/ciclos/novo" label="Novo Ciclo"></button>
+

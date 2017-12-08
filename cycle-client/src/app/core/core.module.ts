@@ -1,6 +1,6 @@
 import { InputTextModule, ButtonModule, GrowlModule, DataTableModule, SharedModule } from 'primeng/primeng';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CicloService } from './../service/ciclo.service';
 import { Title, BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,7 +26,8 @@ import {ToastyModule} from 'ng2-toasty';
     InputTextModule,
     ButtonModule,
     GrowlModule,
-    ToastyModule.forRoot()
+    ToastyModule.forRoot(),
+    ReactiveFormsModule
   ],
   declarations: [PaginaNaoEncontradaComponent,
     NavbarComponent],
@@ -42,7 +43,8 @@ import {ToastyModule} from 'ng2-toasty';
 
     exports: [
       NavbarComponent,
-      ToastyModule
+      ToastyModule,
+      ReactiveFormsModule
     ]
 })
 export class CoreModule { }

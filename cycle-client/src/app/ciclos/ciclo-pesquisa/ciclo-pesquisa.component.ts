@@ -1,5 +1,6 @@
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Page } from './../../entity/page.entity';
 import { CicloFilter } from './../../filter/ciclo.filter';
@@ -19,13 +20,16 @@ export class CicloPesquisaComponent implements OnInit {
 
   constructor(private cicloService: CicloService,
   private handleError: ErrorHandlerService,
-  private toasty: ToastyService) { }
+  private toasty: ToastyService,
+  private title: Title) { }
 
   page = new Page();
   ciclo: Ciclo;
   cicloFilter = new CicloFilter();
+  @ViewChild('tableCiclos') tableCiclo;
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de Ciclos');
   }
 
   public consultar() {
@@ -34,6 +38,12 @@ export class CicloPesquisaComponent implements OnInit {
     }, error => {
       this.handleError.handle(error);
     });
+  }
+
+  limpar() {
+    this.cicloFilter = new CicloFilter();
+    this.consultar();
+    this.tableCiclo.first = 0;
   }
 
   public aoMudarPagina(event: LazyLoadEvent) {

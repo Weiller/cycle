@@ -1,21 +1,32 @@
-<p-fieldset legend="Materias" [toggleable]="true">
-  <label for="imateria">Matéria</label>
-  <input pInputText id="imateria" [(ngModel)]="materia.nome" name="nomeMateria" type="text">
+<form [formGroup]="formGroup">
+  <p-fieldset legend="Materias" [toggleable]="true">
 
-  <label for="imateria">Horas</label>
-  <p-inputMask id="ihoras" mask="99:99" [(ngModel)]="materia.horasEstudoCiclo"
-  name="horasEstudoCiclo" class="horas" required type="text" size="5"> </p-inputMask>
-  <button pButton label="Adicionar" (click)="adicionarMateria()" type="button"></button>
-  <div class="table-materias">
-    <p-dataTable [(value)]="materias" [paginator]="true" [rows]="5">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-6">
+        <label for="imateria">Matéria</label>
+        <input pInputText id="imateria" [(ngModel)]="materia.nome" formControlName="nomeMateria" type="text">
+        <div class="invalid-field" *ngIf="!formGroup.controls['nomeMateria'].valid && formGroup.controls['nomeMateria'].touched">Campo obrigatório.</div>
+      </div>
+      <div class="ui-g-2">
+        <label for="imateria">Horas</label>
+        <p-inputMask id="ihoras" mask="99:99" [(ngModel)]="materia.horasEstudoCiclo" formControlName="horas"
+          class="horas" required type="text" size="5"> </p-inputMask>
+          <div class="invalid-field" *ngIf="!formGroup.controls['horas'].valid && formGroup.controls['horas'].touched">Campo obrigatório.</div>
+      </div>
+    </div>
+    <button pButton label="Adicionar" (click)="adicionarMateria()" type="button"></button>
+
+    <div class="table-materias">
+      <p-dataTable [(value)]="materias" [paginator]="true" [rows]="5">
         <p-column field="nome" header="Nome"></p-column>
         <p-column field="horasEstudoCiclo" header="Horas por Ciclo"></p-column>
         <p-column header="Ação">
           <ng-template let-materia="rowData" pTemplate="body">
-              <button pButton icon="fa-pencil" (click)="selecionarMateria(materia)"></button>
-              <button pButton icon="fa-trash" (click)="removerMateria(materia)"></button>
+            <button pButton icon="fa-pencil" (click)="selecionarMateria(materia)"></button>
+            <button pButton icon="fa-trash" (click)="removerMateria(materia)"></button>
           </ng-template>
         </p-column>
-    </p-dataTable>
-  </div>
-</p-fieldset>
+      </p-dataTable>
+    </div>
+  </p-fieldset>
+</form>

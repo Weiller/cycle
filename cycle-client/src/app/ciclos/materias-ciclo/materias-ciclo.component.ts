@@ -2,6 +2,8 @@ import { ToastyService } from 'ng2-toasty';
 import { ValidacaoFormException } from './../../exception/validacao.form.exception';
 import { Materia } from './../../entity/materia.entity';
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl, FormControlName } from '@angular/forms';
+
 
 @Component({
   selector: 'app-materias-ciclo',
@@ -18,10 +20,17 @@ export class MateriasCicloComponent implements OnInit {
 
   @Output() materiaAlterada = new EventEmitter();
 
+  formGroup: FormGroup;
+
   materia = new Materia();
-  constructor(private toasty: ToastyService) { }
+  constructor(private toasty: ToastyService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.formGroup = this.fb.group({
+      'nomeMateria': ['', Validators.required],
+      'horas': [null, Validators.required]
+    });
   }
 
   adicionarMateria() {
@@ -30,7 +39,10 @@ export class MateriasCicloComponent implements OnInit {
       this.materias.push(this.materia);
       this.materiaAdicionada.emit(this.materia);
       this.materia = new Materia();
+      this.formGroup.reset();
     } catch (e) {
+      this.formGroup.controls['nomeMateria'].markAsTouched();
+      this.formGroup.controls['horas'].markAsTouched();
       this.toasty.error(e.message);
     }
   }

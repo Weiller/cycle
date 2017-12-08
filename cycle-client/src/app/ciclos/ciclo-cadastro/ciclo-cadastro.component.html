@@ -1,17 +1,19 @@
-<form #ngCiclo="ngForm" (ngSubmit)="salvar(ngCiclo)">
+<form [formGroup]="cicloForm.form">
   <p-fieldset legend="Ciclo de Estudo" [toggleable]="true">
-    <div class="ui-g">
-
+    <div class="ui-g ui-fluid">
       <div class="ui-g-12">
-        <label for="inome">Ciclo de Estudo</label>
-        <input id="inome" pInputText type="text" [(ngModel)]="ciclo.nomeCiclo" name="nomeCiclo" required>
-
-        <label for="ihoras">Horas</label>
-        <p-inputMask id="ihoras" mask="99:99" [(ngModel)]="ciclo.totalHoras" name="totalHoras" required type="text" size="5"> </p-inputMask>
-
+        <div class="ui-g-6">
+          <label for="inome">Ciclo de Estudo</label>
+          <input id="inome" pInputText type="text" [(ngModel)]="ciclo.nomeCiclo" formControlName="nomeCiclo" required>
+          <div class="invalid-field" *ngIf="!cicloForm.form.controls['nomeCiclo'].valid && cicloForm.form.controls['nomeCiclo'].touched">Campo obrigatório.</div>
+        </div>
+        <div class="ui-g-12 ui-md-2 ui-input-container">
+          <label for="ihoras">Horas</label>
+          <p-inputMask id="ihoras" mask="99:99" [(ngModel)]="ciclo.totalHoras" formControlName="totalHoras" required type="text" size="5"> </p-inputMask>
+          <div class="invalid-field" *ngIf="!cicloForm.form.controls['totalHoras'].valid && cicloForm.form.controls['totalHoras'].touched">Campo obrigatório.</div>
+        </div>
       </div>
     </div>
-
   </p-fieldset>
-  <br/>
 </form>
+<br>
