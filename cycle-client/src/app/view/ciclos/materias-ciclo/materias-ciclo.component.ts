@@ -1,6 +1,6 @@
 import { ToastyService } from 'ng2-toasty';
-import { ValidacaoFormException } from './../../exception/validacao.form.exception';
-import { Materia } from './../../entity/materia.entity';
+import { ValidacaoFormException } from './../../../exception/validacao.form.exception';
+import { Materia } from './../../../entity/materia.entity';
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl, FormControlName } from '@angular/forms';
 

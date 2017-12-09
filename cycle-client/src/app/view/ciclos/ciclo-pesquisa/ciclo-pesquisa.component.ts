@@ -2,11 +2,11 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { Page } from './../../entity/page.entity';
-import { CicloFilter } from './../../filter/ciclo.filter';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { Ciclo } from './../../entity/ciclo.entity';
-import { CicloService } from './../../service/ciclo.service';
+import { Page } from './../../../entity/page.entity';
+import { CicloFilter } from './../../../filter/ciclo.filter';
+import { ErrorHandlerService } from './../../../core/error-handler.service';
+import { Ciclo } from './../../../entity/ciclo.entity';
+import { CicloService } from './../../../service/ciclo.service';
 
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { ToastyService } from 'ng2-toasty';

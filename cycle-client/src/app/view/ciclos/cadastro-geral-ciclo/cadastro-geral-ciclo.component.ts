@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { CicloForm } from './../ciclo-cadastro/ciclo.form';
-import { ValidacaoFormException } from './../../exception/validacao.form.exception';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { CicloService } from './../../service/ciclo.service';
-import { CicloDTO } from './../../entity/cicloDTO.entity';
-import { Materia } from './../../entity/materia.entity';
-import { Ciclo } from './../../entity/ciclo.entity';
+import { ValidacaoFormException } from './../../../exception/validacao.form.exception';
+import { ErrorHandlerService } from './../../../core/error-handler.service';
+import { CicloService } from './../../../service/ciclo.service';
+import { CicloDTO } from './../../../dto/cicloDTO.entity';
+import { Materia } from './../../../entity/materia.entity';
+import { Ciclo } from './../../../entity/ciclo.entity';
 
 import { ToastyService } from 'ng2-toasty';
 

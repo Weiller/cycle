@@ -19,7 +19,7 @@ public class TokenResource {
     private CycleProperty cycleProperty;
 
     @DeleteMapping("/revoke")
-    public void revoke(HttpServletRequest req, HttpServletResponse resp){
+    public void revoke(HttpServletRequest req, HttpServletResponse resp) {
         Cookie cookie = new Cookie("refreshToken", null);
         cookie.setHttpOnly(cycleProperty.getSeguranca().isEnableHttps());
         cookie.setSecure(false);

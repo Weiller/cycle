@@ -1,4 +1,5 @@
-import { Materia } from './materia.entity';
+import { Materia } from './../entity/materia.entity';
+
 export class CicloDTO {
   public codigo: number;
   public nomeCiclo: string;

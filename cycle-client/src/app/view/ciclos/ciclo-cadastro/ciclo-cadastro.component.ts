@@ -2,9 +2,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { CicloForm } from './ciclo.form';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { Ciclo } from './../../entity/ciclo.entity';
-import { CicloService } from './../../service/ciclo.service';
+import { ErrorHandlerService } from './../../../core/error-handler.service';
+import { Ciclo } from './../../../entity/ciclo.entity';
+import { CicloService } from './../../../service/ciclo.service';
 
 import { ToastyService } from 'ng2-toasty';
 

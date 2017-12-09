@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { Http, HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { AuthGuard } from './../seguranca/auth.guard';
+import { AuthGuard } from './../../seguranca/auth.guard';
 
 import { CicloPesquisaComponent } from './ciclo-pesquisa/ciclo-pesquisa.component';
 import { CicloCadastroComponent } from './ciclo-cadastro/ciclo-cadastro.component';

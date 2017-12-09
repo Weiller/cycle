@@ -1,4 +1,3 @@
-import { EmptyNullValidator } from './../validator/empty-null.validator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -30,8 +29,7 @@ import { CadastroGeralCicloComponent } from './cadastro-geral-ciclo/cadastro-ger
     CicloPesquisaComponent,
     CicloCadastroComponent,
     MateriasCicloComponent,
-    CadastroGeralCicloComponent,
-    EmptyNullValidator,
+    CadastroGeralCicloComponent
   ]
 })
 export class CiclosModule { }

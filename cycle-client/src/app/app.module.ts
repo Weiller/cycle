@@ -9,7 +9,7 @@ import { SegurancaModule } from './seguranca/seguranca.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing-module';
 import { MateriasModule } from './materias/materias.module';
-import { CiclosModule } from './ciclos/ciclos.module';
+import { CiclosModule } from './view/ciclos/ciclos.module';
 import { NaoAutorizadoComponent } from './seguranca/nao-autorizado/nao-autorizado.component';
 
 @NgModule({

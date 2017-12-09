@@ -1,6 +1,6 @@
 import { Page } from './../entity/page.entity';
 import { CicloFilter } from './../filter/ciclo.filter';
-import { CicloDTO } from './../entity/cicloDTO.entity';
+import { CicloDTO } from './../dto/cicloDTO.entity';
 import { ErrorHandlerService } from './../core/error-handler.service';
 import { Ciclo } from './../entity/ciclo.entity';
 import { AuthHttp } from 'angular2-jwt';
