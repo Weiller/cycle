@@ -35,8 +35,8 @@ export class CadastroGeralEstudoComponent implements OnInit {
   }
 
   iniciarTempo() {
-    if (this.materiaSelecionada.totalHorasEstudadas) {
-      const hora: string[] = this.materiaSelecionada.totalHorasEstudadas.split(':');
+    if (this.materiaSelecionada.horasEstudadas) {
+      const hora: string[] = this.materiaSelecionada.horasEstudadas.split(':');
       this.horas = Number(hora[0]);
       this.minutos = Number(hora[1]);
       this.segundos = Number(hora[2]);

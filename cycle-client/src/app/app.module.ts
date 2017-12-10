@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { EstudosModule } from './view/estudos/estudos.module';
 import { CiclosModule } from './view/ciclos/ciclos.module';
 import { NaoAutorizadoComponent } from './seguranca/nao-autorizado/nao-autorizado.component';
+import { TimerPipe } from './pipe/timer.pipe';
 
 @NgModule({
   declarations: [

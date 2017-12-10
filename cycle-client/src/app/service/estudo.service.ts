@@ -9,7 +9,7 @@ export class EstudoService {
   constructor(private http: AuthHttp) { }
 
   public salvarContagem(materia: Materia): Observable<void> {
-    return this.http.put(`http://localhost:8080/ciclos/estudo/${materia.id}`, materia).map(() => {
+    return this.http.put(`http://localhost:8080/estudos/${materia.id}`, materia).map(() => {
     }).catch(error => Observable.throw(error));
   }
 

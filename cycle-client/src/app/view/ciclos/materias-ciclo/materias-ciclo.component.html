@@ -19,7 +19,11 @@
     <div class="table-materias">
       <p-dataTable [(value)]="materias" [paginator]="true" [rows]="5">
         <p-column field="nome" header="Nome"></p-column>
-        <p-column field="horasEstudoCiclo" header="Horas por Ciclo"></p-column>
+        <p-column header="Horas por Ciclo">
+          <ng-template let-materia="rowData" pTemplate="body">
+            {{ materia.horasEstudoCiclo | timer}}
+          </ng-template>
+        </p-column>
         <p-column header="Ação">
           <ng-template let-materia="rowData" pTemplate="body">
             <button pButton icon="fa-pencil" (click)="selecionarMateria(materia)"></button>

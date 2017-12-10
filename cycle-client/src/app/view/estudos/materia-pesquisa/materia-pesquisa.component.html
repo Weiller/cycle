@@ -1,3 +1,10 @@
-<p-dataTable [value]="materias" selectionMode="single"  (onRowSelect)="emitirMateria()" [(selection)]="materiaSelecionada" dataKey="id">
+<p-dataTable [value]="materias" selectionMode="single" (onRowSelect)="emitirMateria()" [(selection)]="materiaSelecionada"
+  dataKey="id">
   <p-column field="nome" header="Materia"></p-column>
+  <p-column header="Total horas">
+    <ng-template let-materia="rowData" pTemplate="body">
+      {{materia.horasEstudoCiclo | timer}}
+    </ng-template>
+  </p-column>
+  <p-column field="horasEstudadas" header="Total Estudado"></p-column>
 </p-dataTable>

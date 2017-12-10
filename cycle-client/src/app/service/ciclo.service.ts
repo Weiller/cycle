@@ -29,11 +29,6 @@ export class CicloService {
 
   consultar(cicloFilter: CicloFilter): Observable<Page> {
     const params = new URLSearchParams();
-
-      if (!cicloFilter.nome) {
-        cicloFilter.nome = '';
-      }
-
       params.set('nome', cicloFilter.nome);
       params.set('page', cicloFilter.page.toString());
       params.set('size', cicloFilter.size.toString());

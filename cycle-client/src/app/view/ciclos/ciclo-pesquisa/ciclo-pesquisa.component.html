@@ -10,7 +10,11 @@
   (onLazyLoad)="aoMudarPagina($event)"
   [responsive]="true" #tableCiclos>
   <p-column field="nomeCiclo" header="Nome"></p-column>
-  <p-column field="totalHoras" header="Total de Horas"></p-column>
+  <p-column header="Total de Horas">
+    <ng-template let-cicloHoras="rowData" pTemplate="body">
+      {{ cicloHoras.totalHoras | timer}}
+    </ng-template>
+  </p-column>
   <p-column header="Ação">
     <ng-template let-ciclo="rowData" pTemplate="body">
       <button type="submit" pButton [routerLink]="['/ciclos', ciclo.codigo]" icon="fa-pencil"></button>

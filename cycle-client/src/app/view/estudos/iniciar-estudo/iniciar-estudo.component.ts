@@ -35,7 +35,7 @@ export class IniciarEstudoComponent implements OnInit {
     this.contador = setInterval(() => {
       this.segundos++;
 
-      if (this.segundos === 12) {
+      if (this.segundos === 60) {
         this.minutos++;
         this.segundos = 0;
       }
@@ -49,7 +49,7 @@ export class IniciarEstudoComponent implements OnInit {
   }
 
   salvarContagem() {
-    this.materiaSelecionada.totalHorasEstudadas = this.formatarHoras();
+    this.materiaSelecionada.horasEstudadas = this.formatarHoras();
     this.materiaSelecionada.idCiclo = this.ciclo.codigo;
 
     this.estudoService.salvarContagem(this.materiaSelecionada).subscribe(() => {
