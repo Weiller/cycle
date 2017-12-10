@@ -1,7 +1,6 @@
 package br.com.cycle.service;
 
 import br.com.cycle.dto.CicloDTO;
-import br.com.cycle.dto.MateriaDTO;
 import br.com.cycle.entity.Ciclo;
 import br.com.cycle.entity.Materia;
 import br.com.cycle.exceptionhandler.exception.NegocioException;
@@ -55,6 +54,10 @@ public class CicloService {
         return ciclo;
     }
 
+    public Ciclo salvarCiclo(Ciclo ciclo) {
+        return cicloRepository.save(ciclo);
+    }
+
     private void salvarMaterias(CicloDTO cicloDto, Ciclo ciclo) {
         cicloDto.getMaterias().forEach(materiaDTO -> {
             Materia materia = MateriaMapper.materiaDtoToMateria(materiaDTO);
@@ -65,7 +68,7 @@ public class CicloService {
 
     public Page<CicloDTO> listarTodos(CicloFilter cicloFilter, Pageable pageable) {
         List<CicloDTO> ciclosDto = new ArrayList<>();
-
+        validarFiltro(cicloFilter);
         Page<Ciclo> pageCiclo = cicloRepository.findAllByNomeIgnoreCaseContaining(cicloFilter.getNome(), pageable);
 
         pageCiclo.forEach(ciclo -> {
@@ -74,6 +77,12 @@ public class CicloService {
         });
 
         return new PageImpl<>(ciclosDto, pageable, pageCiclo.getTotalElements());
+    }
+
+    private void validarFiltro(CicloFilter cicloFilter) {
+        if(cicloFilter.getNome() == null){
+            cicloFilter.setNome("");
+        }
     }
 
     public void deletar(Long codigo) {
@@ -97,26 +106,13 @@ public class CicloService {
         cicloDTO.getMateriasExcluir().forEach(materiaDto -> materiaService.deletar(materiaDto.getId()));
     }
 
-    public CicloDTO buscarCiclo(Long codigo) {
+    public CicloDTO buscarCicloDto(Long codigo) {
         Ciclo ciclo = cicloRepository.findOne(codigo);
 
         return CicloMapper.cicloToCicloDtoWithMateriasDto(ciclo);
     }
 
-    public void salvarEstudo(MateriaDTO materiaDTO) {
-        Materia materia = MateriaMapper.materiaDtoToMateria(materiaDTO);
-        Ciclo ciclo = cicloRepository.findOne(materiaDTO.getIdCiclo());
-        materia.setCiclo(ciclo);
-        materiaService.salvar(materia);
-
-        salvarCicloEstudo(ciclo);
-    }
-
-    private void salvarCicloEstudo(Ciclo ciclo) {
-        long totalHorasEstudadas = ciclo.getMaterias().stream().mapToLong(materiaCiclo ->
-                materiaCiclo.getHorasEstudadas()).sum();
-
-        ciclo.setHorasEstudadas(totalHorasEstudadas);
-        cicloRepository.save(ciclo);
+    public Ciclo buscarCiclo(Long codigo) {
+        return cicloRepository.findOne(codigo);
     }
 }

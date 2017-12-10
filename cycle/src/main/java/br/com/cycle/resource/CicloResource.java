@@ -1,7 +1,6 @@
 package br.com.cycle.resource;
 
 import br.com.cycle.dto.CicloDTO;
-import br.com.cycle.dto.MateriaDTO;
 import br.com.cycle.repository.filter.CicloFilter;
 import br.com.cycle.service.CicloService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +51,7 @@ public class CicloResource {
 
     @GetMapping("/{codigo}")
     public CicloDTO buscarCiclo(@PathVariable Long codigo){
-        return cicloService.buscarCiclo(codigo);
-    }
-
-    @PutMapping("/estudo/{id}")
-    public void salvarEstudo(@RequestBody MateriaDTO materiaDTO) {
-        cicloService.salvarEstudo(materiaDTO);
+        return cicloService.buscarCicloDto(codigo);
     }
 
 }

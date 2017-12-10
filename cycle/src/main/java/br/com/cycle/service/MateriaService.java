@@ -1,7 +1,6 @@
 package br.com.cycle.service;
 
 
-import br.com.cycle.entity.Ciclo;
 import br.com.cycle.entity.Materia;
 import br.com.cycle.repository.MateriaRepository;
 import org.springframework.beans.BeanUtils;
@@ -43,8 +42,7 @@ public class MateriaService {
     public Materia buscarMateria(Long id) {
         Optional<Materia> materia = Optional.ofNullable(materiaRepository.findOne(id));
 
-        materia.orElseThrow(() -> new EmptyResultDataAccessException(1));
-        return materia.get();
+        return materia.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 
     public List<Materia> buscarMateriasPorCiclo(Long cicoId) {

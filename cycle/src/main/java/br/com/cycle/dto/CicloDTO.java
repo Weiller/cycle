@@ -9,6 +9,7 @@ public class CicloDTO {
     private Long codigo;
     private String nomeCiclo;
     private String totalHoras;
+    private String horasEstudadas;
     private LocalDateTime dataCriacao;
     private List<MateriaDTO> materias;
     private List<MateriaDTO> materiasExcluir;
@@ -46,6 +47,14 @@ public class CicloDTO {
 
     public void setTotalHoras(String totalHoras) {
         this.totalHoras = totalHoras;
+    }
+
+    public String getHorasEstudadas() {
+        return horasEstudadas;
+    }
+
+    public void setHorasEstudadas(String horasEstudadas) {
+        this.horasEstudadas = horasEstudadas;
     }
 
     public LocalDateTime getDataCriacao() {

@@ -5,7 +5,7 @@ public class MateriaDTO {
     private Long id;
     private String nome;
     private String horasEstudoCiclo;
-    private String totalHorasEstudadas;
+    private String horasEstudadas;
     private Long idCiclo;
 
     public Long getId() {
@@ -32,12 +32,12 @@ public class MateriaDTO {
         this.horasEstudoCiclo = horasEstudoCiclo;
     }
 
-    public String getTotalHorasEstudadas() {
-        return totalHorasEstudadas;
+    public String getHorasEstudadas() {
+        return horasEstudadas;
     }
 
-    public void setTotalHorasEstudadas(String totalHorasEstudadas) {
-        this.totalHorasEstudadas = totalHorasEstudadas;
+    public void setHorasEstudadas(String horasEstudadas) {
+        this.horasEstudadas = horasEstudadas;
     }
 
     public Long getIdCiclo() {

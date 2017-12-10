@@ -42,7 +42,7 @@ public class CycleExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({EmptyResultDataAccessException.class})
     public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,
                                                                        WebRequest request) {
-        String mensagemUsuario = messageSource.getMessage("recurso.nao.encontrado", null, LocaleContextHolder.getLocale());
+        String mensagemUsuario = messageSource.getMessage("MSG_RECURSO_NAO_ENCONTRADO", null, LocaleContextHolder.getLocale());
         String mensagemDesenvolvedor = ex.toString();
         Erro erros = new Erro(mensagemUsuario, mensagemDesenvolvedor);
 

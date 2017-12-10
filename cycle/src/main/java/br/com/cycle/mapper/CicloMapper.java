@@ -87,14 +87,27 @@ public class CicloMapper {
         }
 
         cicloDto.setNomeCiclo(ciclo.getNome());
+
+        preencherHorasEstudos(ciclo, cicloDto);
+        preencherDataCriacao(ciclo, cicloDto);
+
+        return cicloDto;
+    }
+
+    private static void preencherHorasEstudos(Ciclo ciclo, CicloDTO cicloDto) {
         cicloDto.setTotalHoras(TimeConverter.segundosEmHoras(ciclo.getTotalHora()));
 
+        if(ciclo.getHorasEstudadas() != null) {
+            cicloDto.setHorasEstudadas(TimeConverter.segundosEmHoras(ciclo.getHorasEstudadas()));
+        }
+    }
+
+    private static void preencherDataCriacao(Ciclo ciclo, CicloDTO cicloDto) {
         if (ciclo.getDataCriacao() != null) {
             cicloDto.setDataCriacao(ciclo.getDataCriacao());
         } else {
             cicloDto.setDataCriacao(LocalDateTime.now());
         }
-        return cicloDto;
     }
 
     private static List<MateriaDTO> preencherMateriasDto(Ciclo ciclo) {
@@ -107,7 +120,7 @@ public class CicloMapper {
             materiaDTO.setNome(materia.getNome());
             materiaDTO.setHorasEstudoCiclo(TimeConverter.segundosEmHoras(materia.getHorasEstudoCiclo()));
             if (materia.getHorasEstudadas() != null) {
-                materiaDTO.setTotalHorasEstudadas(TimeConverter.segundosEmHoras(materia.getHorasEstudadas()));
+                materiaDTO.setHorasEstudadas(TimeConverter.segundosEmHoras(materia.getHorasEstudadas()));
             }
             materiasDto.add(materiaDTO);
         });
