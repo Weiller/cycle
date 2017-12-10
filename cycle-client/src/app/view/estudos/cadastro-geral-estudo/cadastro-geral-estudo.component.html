@@ -1,0 +1,23 @@
+<h2> Estudo do ciclo: {{ciclo.nomeCiclo}} </h2>
+
+<div class="ui-g ui-g-fluid">
+  <div class="ui-g-4">
+    <app-materia-pesquisa
+    [materias]="ciclo.materias"
+    (emitirMateriaSeleciona)="materiaSelecionadaEvento($event)">
+  </app-materia-pesquisa>
+  </div>
+  <div class="ui-g-2"></div>
+  <div class="ui-g-6">
+   <app-iniciar-estudo
+   [materiaSelecionada]="materiaSelecionada"
+   [horas]="horas"
+   [minutos]="minutos"
+   [segundos]="segundos"
+   (emitirMateriaSeleciona)="materiaSelecionadaEvento($event)"
+   [ciclo]="ciclo">
+  </app-iniciar-estudo>
+  </div>
+</div>
+
+<a pButton routerLink="/estudos" label="Voltar"></a>

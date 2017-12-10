@@ -1,3 +1,4 @@
+import { EstudoService } from './../service/estudo.service';
 import { InputTextModule, ButtonModule, GrowlModule, DataTableModule, SharedModule } from 'primeng/primeng';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,7 +39,8 @@ import {ToastyModule} from 'ng2-toasty';
       ErrorHandlerService,
       MateriaService,
       SegurancaService,
-      CicloService
+      CicloService,
+      EstudoService
     ],
 
     exports: [

@@ -106,6 +106,9 @@ public class CicloMapper {
             materiaDTO.setId(materia.getId());
             materiaDTO.setNome(materia.getNome());
             materiaDTO.setHorasEstudoCiclo(TimeConverter.segundosEmHoras(materia.getHorasEstudoCiclo()));
+            if (materia.getHorasEstudadas() != null) {
+                materiaDTO.setTotalHorasEstudadas(TimeConverter.segundosEmHoras(materia.getHorasEstudadas()));
+            }
             materiasDto.add(materiaDTO);
         });
         return materiasDto;

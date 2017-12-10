@@ -1,6 +1,7 @@
 package br.com.cycle.service;
 
 
+import br.com.cycle.entity.Ciclo;
 import br.com.cycle.entity.Materia;
 import br.com.cycle.repository.MateriaRepository;
 import org.springframework.beans.BeanUtils;

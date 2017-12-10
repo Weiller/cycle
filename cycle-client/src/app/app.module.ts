@@ -8,7 +8,7 @@ import { CoreModule } from './core/core.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing-module';
-import { MateriasModule } from './materias/materias.module';
+import { EstudosModule } from './view/estudos/estudos.module';
 import { CiclosModule } from './view/ciclos/ciclos.module';
 import { NaoAutorizadoComponent } from './seguranca/nao-autorizado/nao-autorizado.component';
 
@@ -17,9 +17,10 @@ import { NaoAutorizadoComponent } from './seguranca/nao-autorizado/nao-autorizad
     AppComponent,
     NaoAutorizadoComponent
     ],
+
   imports: [
     SegurancaModule,
-    MateriasModule,
+    EstudosModule,
     CoreModule,
     SharedModule,
     CiclosModule,

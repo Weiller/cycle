@@ -42,6 +42,12 @@ public class Ciclo {
     @OneToMany(mappedBy = "ciclo", fetch = FetchType.LAZY)
     private List<Materia> materias;
 
+    @Column(name = "total_horas_estudadas")
+    private Long horasEstudadas;
+
+    @Column(name = "data_ultimo_estudo")
+    private LocalDateTime dataUltimoEstudo;
+
     public Long getId() {
         return id;
     }
@@ -80,6 +86,22 @@ public class Ciclo {
 
     public void setMaterias(List<Materia> materias) {
         this.materias = materias;
+    }
+
+    public Long getHorasEstudadas() {
+        return horasEstudadas;
+    }
+
+    public void setHorasEstudadas(Long horasEstudadas) {
+        this.horasEstudadas = horasEstudadas;
+    }
+
+    public LocalDateTime getDataUltimoEstudo() {
+        return dataUltimoEstudo;
+    }
+
+    public void setDataUltimoEstudo(LocalDateTime dataUltimoEstudo) {
+        this.dataUltimoEstudo = dataUltimoEstudo;
     }
 
     @Override

@@ -1,36 +1,29 @@
+import { CadastroGeralEstudoComponent } from './cadastro-geral-estudo/cadastro-geral-estudo.component';
 import { AuthConfig } from 'angular2-jwt';
-import { AuthGuard } from './../seguranca/auth.guard';
+import { AuthGuard } from './../../seguranca/auth.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MateriaPesquisaComponent } from './materia-pesquisa/materia-pesquisa.component';
-import { MateriaCadastroComponent } from './materia-cadastro/materia-cadastro.component';
+import { EstudoPesquisaComponent } from './estudo-pesquisa/estudo-pesquisa.component';
+import { IniciarEstudoComponent } from './iniciar-estudo/iniciar-estudo.component';
 import { Routes, RouterModule } from '@angular/router';
 import { Http, HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ToastyModule } from 'ng2-toasty';
 
-
 const routes: Routes = [
   {
-    path: 'materias',
-    component: MateriaPesquisaComponent,
+    path: 'estudos',
+    component: EstudoPesquisaComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_GERAL'] }
   },
   {
-    path: 'materias/novo',
-    component: MateriaCadastroComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['ROLE_GERAL'] }
-  },
-  {
-    path: 'materias/:id',
-    component: MateriaCadastroComponent,
+    path: 'estudos/:id',
+    component: CadastroGeralEstudoComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_GERAL'] }
   }
 ];
-
 
 @NgModule({
   imports: [
@@ -38,4 +31,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class MateriasRoutingModule { }
+export class EstudosRoutingModule { }

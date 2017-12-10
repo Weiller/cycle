@@ -34,6 +34,9 @@ public class Materia {
     @NotNull
     private Ciclo ciclo;
 
+    @Column(name = "total_horas_estudadas")
+    private Long horasEstudadas;
+
     public Long getId() {
         return id;
     }
@@ -64,6 +67,18 @@ public class Materia {
 
     public void setCiclo(Ciclo ciclo) {
         this.ciclo = ciclo;
+    }
+
+    public Long getHorasEstudadas() {
+        if(horasEstudadas == null) {
+            return 0L;
+        }
+
+        return horasEstudadas;
+    }
+
+    public void setHorasEstudadas(Long horasEstudadas) {
+        this.horasEstudadas = horasEstudadas;
     }
 
     @Override

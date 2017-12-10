@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada/pagina-nao-encontrada.component';
-import { MateriaCadastroComponent } from './materias/materia-cadastro/materia-cadastro.component';
-import { MateriaPesquisaComponent } from './materias/materia-pesquisa/materia-pesquisa.component';
+import { IniciarEstudoComponent } from './view/estudos/iniciar-estudo/iniciar-estudo.component';
+import { EstudoPesquisaComponent } from './view/estudos/estudo-pesquisa/estudo-pesquisa.component';
 
 
 const routes: Routes = [

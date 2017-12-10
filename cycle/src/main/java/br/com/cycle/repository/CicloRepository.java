@@ -9,5 +9,4 @@ public interface CicloRepository extends JpaRepository<Ciclo, Long> {
 
     Page<Ciclo> findAllByNomeIgnoreCaseContaining(String nome, Pageable pageable);
 
-
 }

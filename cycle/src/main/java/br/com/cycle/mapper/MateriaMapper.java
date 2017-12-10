@@ -4,6 +4,8 @@ import br.com.cycle.dto.MateriaDTO;
 import br.com.cycle.entity.Materia;
 import br.com.cycle.util.TimeConverter;
 
+import java.sql.Time;
+
 public class MateriaMapper {
 
     private MateriaMapper() {
@@ -31,6 +33,10 @@ public class MateriaMapper {
 
         materia.setNome(materiaDto.getNome());
         materia.setHorasEstudoCiclo(TimeConverter.horasEmSegundos(materiaDto.getHorasEstudoCiclo()));
+
+        if(materiaDto.getTotalHorasEstudadas() != null) {
+            materia.setHorasEstudadas(TimeConverter.horasEmSegundos(materiaDto.getTotalHorasEstudadas()));
+        }
 
         return materia;
     }

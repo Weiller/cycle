@@ -1,0 +1,16 @@
+<div class="ui-g ui-g-fluid">
+  <div class="ui-g-5">
+    <p-dataTable [value]="page.content" [lazy]="true" [rows]="cicloFilter.size" [paginator]="true"
+    (onLazyLoad)="aoMudarPagina($event)" [totalRecords]="page.totalElements">
+      <p-column field="nomeCiclo" header="Matéria"></p-column>
+      <p-column field="totalHoras" header="Total Horas"></p-column>
+      <p-column field="horasEstudadas" header="Horas Estudadas"></p-column>
+      <p-column header="Ação">
+        <ng-template let-ciclo="rowData" pTemplate="body">
+          <button pButton [routerLink]="['/estudos', ciclo.codigo]" pTooltip="Estudar" icon="fa-share"></button>
+          <button pButton [routerLink]="['/estudos']" pTooltip="Estatísticas" icon="fa-line-chart"></button>
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>
+  <div>
