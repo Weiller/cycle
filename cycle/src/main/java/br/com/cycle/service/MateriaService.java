@@ -25,24 +25,19 @@ public class MateriaService {
 
     public ResponseEntity<Materia> atualizar(Long id, Materia materia) {
         Materia materiaSalva = buscarMateria(id);
-
         BeanUtils.copyProperties(materia, materiaSalva, "id");
-
         return ResponseEntity.ok(materiaRepository.save(materiaSalva));
     }
 
     public ResponseEntity<Materia> deletar(Long id) {
         Materia materia = buscarMateria(id);
-
         materiaRepository.delete(materia);
-
         return ResponseEntity.ok(materia);
     }
 
     public Materia buscarMateria(Long id) {
-        Optional<Materia> materia = Optional.ofNullable(materiaRepository.findOne(id));
-
-        return materia.orElseThrow(() -> new EmptyResultDataAccessException(1));
+        return Optional.ofNullable(materiaRepository.findOne(id))
+                .orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 
     public List<Materia> buscarMateriasPorCiclo(Long cicoId) {

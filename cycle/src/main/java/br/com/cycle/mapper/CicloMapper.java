@@ -9,6 +9,7 @@ import br.com.cycle.util.TimeConverter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CicloMapper {
 
@@ -21,11 +22,8 @@ public class CicloMapper {
 
     public static Ciclo cicloDtoToCicloWithMaterias(CicloDTO cicloDto) {
         Ciclo ciclo = preencherCiclo(cicloDto);
-
         List<Materia> materias = preencherMaterias(cicloDto);
-
         ciclo.setMaterias(materias);
-
         return ciclo;
     }
 
@@ -111,9 +109,7 @@ public class CicloMapper {
     }
 
     private static List<MateriaDTO> preencherMateriasDto(Ciclo ciclo) {
-        List<MateriaDTO> materiasDto = new ArrayList<>();
-
-        ciclo.getMaterias().forEach(materia -> {
+        return ciclo.getMaterias().stream().map(materia -> {
             MateriaDTO materiaDTO = new MateriaDTO();
 
             materiaDTO.setId(materia.getId());
@@ -122,8 +118,7 @@ public class CicloMapper {
             if (materia.getHorasEstudadas() != null) {
                 materiaDTO.setHorasEstudadas(TimeConverter.segundosEmHoras(materia.getHorasEstudadas()));
             }
-            materiasDto.add(materiaDTO);
-        });
-        return materiasDto;
+            return materiaDTO;
+        }).collect(Collectors.toList());
     }
 }

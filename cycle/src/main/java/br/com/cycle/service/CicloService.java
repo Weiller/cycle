@@ -11,13 +11,9 @@ import br.com.cycle.repository.filter.CicloFilter;
 import br.com.cycle.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class CicloService {
@@ -30,28 +26,22 @@ public class CicloService {
 
     public ResponseEntity<CicloDTO> salvar(CicloDTO cicloDto) {
         preValidate(cicloDto);
-        Ciclo ciclo = salvarCiclo(cicloDto);
-        salvarMaterias(cicloDto, ciclo);
+        salvarMaterias(cicloDto, salvarCiclo(cicloDto));
 
         return ResponseEntity.ok(cicloDto);
     }
 
     private void preValidate(CicloDTO cicloDto) {
-        Long totalHorasCiclo = TimeConverter.horasEmSegundos(cicloDto.getTotalHoras());
-
         Long totalHorasMaterias = cicloDto.getMaterias().stream().mapToLong(horasEstudo ->
                 TimeConverter.horasEmSegundos(horasEstudo.getHorasEstudoCiclo())).sum();
 
-        if (!totalHorasMaterias.equals(totalHorasCiclo)) {
+        if (!totalHorasMaterias.equals(TimeConverter.horasEmSegundos(cicloDto.getTotalHoras()))) {
             throw new NegocioException("MSG_TOTAL_HORAS_INVALIDO");
         }
     }
 
     private Ciclo salvarCiclo(CicloDTO cicloDto) {
-        Ciclo ciclo = CicloMapper.cicloDtoToCiclo(cicloDto);
-        cicloRepository.save(ciclo);
-
-        return ciclo;
+        return cicloRepository.save(CicloMapper.cicloDtoToCiclo(cicloDto));
     }
 
     public Ciclo salvarCiclo(Ciclo ciclo) {
@@ -67,28 +57,19 @@ public class CicloService {
     }
 
     public Page<CicloDTO> listarTodos(CicloFilter cicloFilter, Pageable pageable) {
-        List<CicloDTO> ciclosDto = new ArrayList<>();
         validarFiltro(cicloFilter);
-        Page<Ciclo> pageCiclo = cicloRepository.findAllByNomeIgnoreCaseContaining(cicloFilter.getNome(), pageable);
-
-        pageCiclo.forEach(ciclo -> {
-            CicloDTO cicloDto = CicloMapper.cicloToCicloDto(ciclo);
-            ciclosDto.add(cicloDto);
-        });
-
-        return new PageImpl<>(ciclosDto, pageable, pageCiclo.getTotalElements());
+        return cicloRepository.findAllByNomeIgnoreCaseContaining(cicloFilter.getNome(), pageable)
+                .map(CicloMapper::cicloToCicloDto);
     }
 
     private void validarFiltro(CicloFilter cicloFilter) {
-        if(cicloFilter.getNome() == null){
+        if (cicloFilter.getNome() == null) {
             cicloFilter.setNome("");
         }
     }
 
     public void deletar(Long codigo) {
-        List<Materia> materias = materiaService.buscarMateriasPorCiclo(codigo);
-        materias.forEach(materia -> materiaService.deletar(materia.getId()));
-
+        materiaService.buscarMateriasPorCiclo(codigo).forEach(materia -> materiaService.deletar(materia.getId()));
         cicloRepository.delete(codigo);
     }
 
@@ -107,9 +88,7 @@ public class CicloService {
     }
 
     public CicloDTO buscarCicloDto(Long codigo) {
-        Ciclo ciclo = cicloRepository.findOne(codigo);
-
-        return CicloMapper.cicloToCicloDtoWithMateriasDto(ciclo);
+        return CicloMapper.cicloToCicloDtoWithMateriasDto(cicloRepository.findOne(codigo));
     }
 
     public Ciclo buscarCiclo(Long codigo) {
