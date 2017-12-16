@@ -6,5 +6,9 @@
       {{materia.horasEstudoCiclo | timer}}
     </ng-template>
   </p-column>
-  <p-column field="horasEstudadas" header="Total Estudado"></p-column>
+  <p-column header="Total Estudado">
+    <ng-template let-materiasEstudadas="rowData" pTemplate="body">
+      {{ materiasEstudadas.horasEstudadas | timerSeconds }}
+    </ng-template>
+  </p-column>
 </p-dataTable>

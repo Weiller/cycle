@@ -1,3 +1,4 @@
+import { TimerSecondsPipe } from './../pipe/timer-seconds.pipe';
 import { TimerPipe } from './../pipe/timer.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -9,11 +10,15 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [TimerPipe],
+  declarations: [
+    TimerPipe,
+    TimerSecondsPipe
+  ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    TimerPipe
+    TimerPipe,
+    TimerSecondsPipe
   ]
 })
 export class SharedModule { }

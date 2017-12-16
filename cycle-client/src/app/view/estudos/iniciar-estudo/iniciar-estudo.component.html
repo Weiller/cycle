@@ -6,12 +6,10 @@
 
 <div class="ui-g">
   <div class="ui-g-12">
-    <button pButton (click)="iniciarContagem()" class="botaoIniciar" label="INICIAR" icon="fa-clock-o fa-2x" iconPos="left">
-
+    <button pButton (click)="iniciarContagem()" [disabled]="habilitarBotaoContagem()" class="botaoIniciar" label="INICIAR" icon="fa-clock-o fa-2x" iconPos="left">
     </button>
-    <button pButton (click)="pararContagem()" class="botaoIniciar ui-button-danger" label="PARAR" icon=" fa-stop-circle fa-2x"
+    <button pButton (click)="pararContagem()" [disabled]="habilitarBotaoContagem()" class="botaoIniciar ui-button-danger" label="PARAR" icon=" fa-stop-circle fa-2x"
       iconPos="left"></button>
   </div>
-
-  {{horas < 10? '0'+horas: horas}}:{{minutos < 10? '0'+minutos: minutos}}:{{segundos < 10? '0'+segundos : segundos}}
+<span>{{formatarHoras() | timerSeconds}}</span>
 </div>

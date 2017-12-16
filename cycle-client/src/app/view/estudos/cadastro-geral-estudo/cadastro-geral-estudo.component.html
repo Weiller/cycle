@@ -2,20 +2,13 @@
 
 <div class="ui-g ui-g-fluid">
   <div class="ui-g-4">
-    <app-materia-pesquisa
-    [materias]="ciclo.materias"
-    (emitirMateriaSeleciona)="materiaSelecionadaEvento($event)">
-  </app-materia-pesquisa>
+    <app-materia-pesquisa [materias]="ciclo.materias" (emitirMateriaSeleciona)="materiaSelecionadaEvento($event)">
+    </app-materia-pesquisa>
   </div>
   <div class="ui-g-2"></div>
   <div class="ui-g-6">
-   <app-iniciar-estudo
-   [materiaSelecionada]="materiaSelecionada"
-   [horas]="horas"
-   [minutos]="minutos"
-   [segundos]="segundos"
-   [ciclo]="ciclo">
-  </app-iniciar-estudo>
+    <app-iniciar-estudo [materiaSelecionada]="materiaSelecionada" [horas]="horas" [minutos]="minutos" [segundos]="segundos" [ciclo]="ciclo">
+    </app-iniciar-estudo>
   </div>
 </div>
 

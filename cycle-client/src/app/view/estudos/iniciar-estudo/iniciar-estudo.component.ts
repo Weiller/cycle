@@ -27,10 +27,6 @@ export class IniciarEstudoComponent implements OnInit {
   ngOnInit() {
   }
 
-  materiaSelecionadaEvento(materia: Materia) {
-    this.materiaSelecionada = materia;
-  }
-
   iniciarContagem() {
     this.contador = setInterval(() => {
       this.segundos++;
@@ -66,5 +62,10 @@ export class IniciarEstudoComponent implements OnInit {
     clearInterval(this.contador);
     this.segundos = 0;
     this.minutos = 0;
+    this.materiaSelecionada = new Materia();
+  }
+
+  habilitarBotaoContagem() {
+    return !this.materiaSelecionada.nome;
   }
 }

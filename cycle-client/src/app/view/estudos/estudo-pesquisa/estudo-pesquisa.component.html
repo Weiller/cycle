@@ -8,7 +8,11 @@
           {{ ciclo.totalHoras | timer }}
         </ng-template>
       </p-column>
-      <p-column field="horasEstudadas" header="Horas Estudadas"></p-column>
+      <p-column header="Horas Estudadas">
+        <ng-template let-ciclosEstudados="rowData" pTemplate="body">
+          {{ ciclosEstudados.horasEstudadas | timerSeconds }}
+        </ng-template>
+      </p-column>
       <p-column header="Ação">
         <ng-template let-ciclo="rowData" pTemplate="body">
           <button pButton [routerLink]="['/estudos', ciclo.codigo]" pTooltip="Estudar" icon="fa-share"></button>
