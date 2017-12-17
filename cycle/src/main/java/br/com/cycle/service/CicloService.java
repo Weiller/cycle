@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class CicloService {
 
@@ -63,7 +65,7 @@ public class CicloService {
     }
 
     private void validarFiltro(CicloFilter cicloFilter) {
-        if (cicloFilter.getNome() == null) {
+        if (Objects.isNull(cicloFilter.getNome())) {
             cicloFilter.setNome("");
         }
     }
