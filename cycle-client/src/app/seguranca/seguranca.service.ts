@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
@@ -12,14 +13,17 @@ import { Usuario } from './../entity/usuario.entity';
 
 @Injectable()
 export class SegurancaService {
-  constructor(private http: Http,
-  private jwtHelper: JwtHelper,
-  private toasty: ToastyService,
-  private router: Router) {
-    this.carregarToken();
-   }
 
-  oauthUrl = 'http://localhost:8080/oauth/token';
+  url: string;
+
+  constructor(private http: Http,
+    private jwtHelper: JwtHelper,
+    private toasty: ToastyService,
+    private router: Router) {
+    this.carregarToken();
+    this.url = `${environment.url}/oauth/token`;
+  }
+
   jwtPayload: any;
 
   logar(usuario: Usuario): Promise<void> {
@@ -29,21 +33,21 @@ export class SegurancaService {
     headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy');
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-    return this.http.post(this.oauthUrl, body, { headers, withCredentials: true  }).toPromise()
-    .then(response => {
+    return this.http.post(this.url, body, { headers, withCredentials: true }).toPromise()
+      .then(response => {
         this.armazenarToken(response.json().access_token);
         this.router.navigate(['/ciclos']);
-    }).catch(error => {
+      }).catch(error => {
 
-      if (error.status === 400) {
-        const responseJson = error.json();
-        if (responseJson.error === 'invalid_grant') {
-          return Promise.reject('Usuário ou senha inválido.');
+        if (error.status === 400) {
+          const responseJson = error.json();
+          if (responseJson.error === 'invalid_grant') {
+            return Promise.reject('Usuário ou senha inválido.');
+          }
         }
-      }
 
-      return Promise.reject(error);
-    });
+        return Promise.reject(error);
+      });
   }
 
   obterNovoAccessToken(): Promise<void> {
@@ -53,7 +57,7 @@ export class SegurancaService {
 
     const body = 'grant_type=refresh_token';
 
-    return this.http.post(this.oauthUrl, body,
+    return this.http.post(this.url, body,
       { headers, withCredentials: true })
       .toPromise()
       .then(response => {
@@ -74,7 +78,7 @@ export class SegurancaService {
   }
 
   temPermissao(permissao: string) {
-    return this.jwtPayload && this.jwtPayload.authorities &&  this.jwtPayload.authorities.includes(permissao);
+    return this.jwtPayload && this.jwtPayload.authorities && this.jwtPayload.authorities.includes(permissao);
   }
 
   public temQualquerPermissao(roles) {

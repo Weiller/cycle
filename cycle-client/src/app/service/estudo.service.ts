@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { Materia } from './../entity/materia.entity';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
@@ -6,10 +7,14 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EstudoService {
 
-  constructor(private http: AuthHttp) { }
+  url: string;
+
+  constructor(private http: AuthHttp) {
+    this.url = `${environment.url}/estudos`;
+  }
 
   public salvarContagem(materia: Materia): Observable<void> {
-    return this.http.put(`http://localhost:8080/estudos/${materia.id}`, materia).map(() => {
+    return this.http.put(`${this.url}/${materia.id}`, materia).map(() => {
     }).catch(error => Observable.throw(error));
   }
 

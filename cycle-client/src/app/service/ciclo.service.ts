@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Page } from './../entity/page.entity';
 import { CicloFilter } from './../filter/ciclo.filter';
 import { CicloDTO } from './../dto/cicloDTO.entity';
@@ -12,17 +13,21 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class CicloService {
 
+  url: string;
+
   constructor(private http: AuthHttp,
-  private handleError: ErrorHandlerService) { }
+  private handleError: ErrorHandlerService) {
+    this.url = `${environment.url}/ciclos`;
+  }
 
   cadastrar(cicloDTO: CicloDTO): Observable<CicloDTO> {
-    return this.http.post('http://localhost:8080/ciclos', cicloDTO).map(response => {
+    return this.http.post(this.url, cicloDTO).map(response => {
       response.json();
     }).catch((error: any) => Observable.throw(error));
   }
 
   alterar(cicloDTO: CicloDTO): Observable<CicloDTO> {
-    return this.http.put(`http://localhost:8080/ciclos/${cicloDTO.codigo}`, cicloDTO).map(response => {
+    return this.http.put(`${this.url}/${cicloDTO.codigo}`, cicloDTO).map(response => {
       return response.json();
     }).catch(error => Observable.throw(error));
   }
@@ -33,19 +38,19 @@ export class CicloService {
       params.set('page', cicloFilter.page.toString());
       params.set('size', cicloFilter.size.toString());
 
-    return this.http.get('http://localhost:8080/ciclos', { search: params } ).map(response => {
+    return this.http.get(this.url, { search: params } ).map(response => {
       return response.json();
     }).catch((error: any) => Observable.throw(error));
   }
 
   consultarCiclo(id: number): Observable<CicloDTO> {
-    return this.http.get(`http://localhost:8080/ciclos/${id}`).map(response => {
+    return this.http.get(`${this.url}/${id}`).map(response => {
       return response.json();
     }).catch(error => Observable.throw(error));
   }
 
   deletar(codigo: number): Observable<void> {
-    return this.http.delete(`http://localhost:8080/ciclos/${codigo}`).map(() => null)
+    return this.http.delete(`${this.url}/${codigo}`).map(() => null)
     .catch((error: any) => Observable.throw(error));
   }
 
