@@ -60,7 +60,7 @@ public class CicloService {
 
     public Page<CicloDTO> listarTodos(CicloFilter cicloFilter, Pageable pageable) {
         validarFiltro(cicloFilter);
-        return cicloRepository.findAllByNomeIgnoreCaseContaining(cicloFilter.getNome(), pageable)
+        return cicloRepository.findAllByNomeIgnoreCaseContainingOrderByNomeAsc(cicloFilter.getNome(), pageable)
                 .map(CicloMapper::cicloToCicloDto);
     }
 

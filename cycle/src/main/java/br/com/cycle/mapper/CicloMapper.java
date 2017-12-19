@@ -9,6 +9,7 @@ import br.com.cycle.util.TimeConverter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class CicloMapper {
@@ -30,19 +31,24 @@ public class CicloMapper {
     private static Ciclo preencherCiclo(CicloDTO cicloDto) {
         Ciclo ciclo = new Ciclo();
 
-        if (cicloDto.getCodigo() != null) {
+        if (Objects.nonNull(cicloDto.getCodigo())) {
             ciclo.setId(cicloDto.getCodigo());
         }
 
         ciclo.setNome(cicloDto.getNomeCiclo());
         ciclo.setTotalHora(TimeConverter.horasEmSegundos(cicloDto.getTotalHoras()));
+        ciclo.setHorasEstudadas(TimeConverter.horasEmSegundos(cicloDto.getHorasEstudadas()));
 
-        if (cicloDto.getDataCriacao() != null) {
+        preencherDataCriacaoCicloDto(cicloDto, ciclo);
+        return ciclo;
+    }
+
+    private static void preencherDataCriacaoCicloDto(CicloDTO cicloDto, Ciclo ciclo) {
+        if (Objects.nonNull(cicloDto.getDataCriacao())) {
             ciclo.setDataCriacao(cicloDto.getDataCriacao());
         } else {
             ciclo.setDataCriacao(LocalDateTime.now());
         }
-        return ciclo;
     }
 
     private static List<Materia> preencherMaterias(CicloDTO cicloDto) {
@@ -51,7 +57,7 @@ public class CicloMapper {
         cicloDto.getMaterias().forEach(materiaDTO -> {
             Materia materia = new Materia();
 
-            if (materiaDTO.getId() != null) {
+            if (Objects.nonNull(materiaDTO.getId())) {
                 materia.setId(materiaDTO.getId());
             }
 
@@ -80,14 +86,14 @@ public class CicloMapper {
     private static CicloDTO preencherCicloDto(Ciclo ciclo) {
         CicloDTO cicloDto = new CicloDTO();
 
-        if (ciclo.getId() != null) {
+        if (Objects.nonNull(ciclo.getId())) {
             cicloDto.setCodigo(ciclo.getId());
         }
 
         cicloDto.setNomeCiclo(ciclo.getNome());
 
         preencherHorasEstudos(ciclo, cicloDto);
-        preencherDataCriacao(ciclo, cicloDto);
+        preencherDataCriacaoCicloDto(ciclo, cicloDto);
 
         return cicloDto;
     }
@@ -95,13 +101,13 @@ public class CicloMapper {
     private static void preencherHorasEstudos(Ciclo ciclo, CicloDTO cicloDto) {
         cicloDto.setTotalHoras(TimeConverter.segundosEmHoras(ciclo.getTotalHora()));
 
-        if(ciclo.getHorasEstudadas() != null) {
+        if(Objects.nonNull(ciclo.getHorasEstudadas())) {
             cicloDto.setHorasEstudadas(TimeConverter.segundosEmHoras(ciclo.getHorasEstudadas()));
         }
     }
 
-    private static void preencherDataCriacao(Ciclo ciclo, CicloDTO cicloDto) {
-        if (ciclo.getDataCriacao() != null) {
+    private static void preencherDataCriacaoCicloDto(Ciclo ciclo, CicloDTO cicloDto) {
+        if (Objects.nonNull(ciclo.getDataCriacao())) {
             cicloDto.setDataCriacao(ciclo.getDataCriacao());
         } else {
             cicloDto.setDataCriacao(LocalDateTime.now());
@@ -115,7 +121,8 @@ public class CicloMapper {
             materiaDTO.setId(materia.getId());
             materiaDTO.setNome(materia.getNome());
             materiaDTO.setHorasEstudoCiclo(TimeConverter.segundosEmHoras(materia.getHorasEstudoCiclo()));
-            if (materia.getHorasEstudadas() != null) {
+
+            if (Objects.nonNull(materia.getHorasEstudadas())) {
                 materiaDTO.setHorasEstudadas(TimeConverter.segundosEmHoras(materia.getHorasEstudadas()));
             }
             return materiaDTO;

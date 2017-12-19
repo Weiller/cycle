@@ -138,6 +138,7 @@ export class CadastroGeralCicloComponent implements OnInit {
     this.ciclo.nomeCiclo = ciclo.nomeCiclo;
     this.ciclo.dataCriacao = ciclo.dataCriacao;
     this.ciclo.totalHoras = ciclo.totalHoras;
+    this.ciclo.horasEstudadas = ciclo.horasEstudadas;
   }
 
   preencherCicloDto(): CicloDTO {
@@ -145,6 +146,7 @@ export class CadastroGeralCicloComponent implements OnInit {
     cicloDto.codigo = this.ciclo.codigo;
     cicloDto.nomeCiclo = this.ciclo.nomeCiclo;
     cicloDto.totalHoras = this.ciclo.totalHoras;
+    cicloDto.horasEstudadas = this.ciclo.horasEstudadas;
     cicloDto.materias = this.materias;
     cicloDto.materiasExcluir = this.materiasExcluir;
     return cicloDto;

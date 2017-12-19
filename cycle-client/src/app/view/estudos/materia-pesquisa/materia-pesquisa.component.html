@@ -1,4 +1,5 @@
-<p-dataTable [value]="materias" selectionMode="single" (onRowSelect)="emitirMateria()" [(selection)]="materiaSelecionada"
+<p-dataTable [value]="materias" selectionMode="single"
+(onRowSelect)="emitirMateria()" [(selection)]="materiaSelecionada"
   dataKey="id">
   <p-column field="nome" header="Materia"></p-column>
   <p-column header="Total horas">

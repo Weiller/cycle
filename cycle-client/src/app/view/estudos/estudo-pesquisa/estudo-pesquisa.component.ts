@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 
 import { Page } from './../../../entity/page.entity';
@@ -18,9 +19,11 @@ export class EstudoPesquisaComponent implements OnInit {
   page = new Page();
 
   constructor(private cicloService: CicloService,
-  private errorHandle: ErrorHandlerService) { }
+  private errorHandle: ErrorHandlerService,
+  private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de ciclos');
   }
 
   consultar() {

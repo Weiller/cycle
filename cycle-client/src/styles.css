@@ -8,3 +8,7 @@ label{
   font-size: 80%;
   color: red;
 }
+
+.direita {
+  float: right;
+}

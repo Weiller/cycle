@@ -20,6 +20,7 @@ export class IniciarEstudoComponent implements OnInit {
   @Input() minutos = 0;
   @Input() horas = 0;
   contador: any;
+  contagemIniciada: boolean;
 
   constructor(private estudoService: EstudoService,
     private toasty: ToastyService) { }
@@ -40,8 +41,8 @@ export class IniciarEstudoComponent implements OnInit {
         this.horas++;
         this.minutos = 0;
       }
-
     }, 1000);
+    this.contagemIniciada = true;
   }
 
   salvarContagem() {
@@ -63,9 +64,16 @@ export class IniciarEstudoComponent implements OnInit {
     this.segundos = 0;
     this.minutos = 0;
     this.materiaSelecionada = new Materia();
+    this.contagemIniciada = false;
   }
 
-  habilitarBotaoContagem() {
+  habilitarBotaoIniciar() {
+    if ((!this.materiaSelecionada.nome) || (this.materiaSelecionada.nome && this.contagemIniciada)) {
+      return true;
+    }
+  }
+
+  habilitarBotaoParar() {
     return !this.materiaSelecionada.nome;
   }
 }

@@ -1,3 +1,4 @@
+import { InfoService } from './service/info.service';
 import { SharedModule } from 'primeng/primeng';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -28,7 +29,7 @@ import { TimerPipe } from './pipe/timer.pipe';
     AppRoutingModule
   ],
 
-  providers: [],
+  providers: [InfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
