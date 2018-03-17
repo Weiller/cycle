@@ -4,7 +4,6 @@ import br.com.cycle.entity.dto.CicloDTO;
 import br.com.cycle.repository.filter.CicloFilter;
 import br.com.cycle.service.CicloService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

@@ -3,13 +3,11 @@ package br.com.cycle.service;
 
 import br.com.cycle.entity.Materia;
 import br.com.cycle.entity.dto.MateriaDTO;
-import br.com.cycle.mapper.CicloMapper;
 import br.com.cycle.mapper.MateriaMapper;
 import br.com.cycle.repository.MateriaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
