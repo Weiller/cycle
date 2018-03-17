@@ -1,6 +1,6 @@
 package br.com.cycle.service;
 
-import br.com.cycle.dto.CicloDTO;
+import br.com.cycle.entity.dto.CicloDTO;
 import br.com.cycle.entity.Ciclo;
 import br.com.cycle.entity.Materia;
 import br.com.cycle.exceptionhandler.exception.NegocioException;
@@ -9,7 +9,7 @@ import br.com.cycle.mapper.MateriaMapper;
 import br.com.cycle.repository.CicloRepository;
 import br.com.cycle.repository.filter.CicloFilter;
 import br.com.cycle.util.TimeConverter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,20 +17,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+@AllArgsConstructor
 @Service
 public class CicloService {
 
-    @Autowired
     private CicloRepository cicloRepository;
 
-    @Autowired
     private MateriaService materiaService;
 
-    public ResponseEntity<CicloDTO> salvar(CicloDTO cicloDto) {
+    public CicloDTO salvar(CicloDTO cicloDto) {
         preValidate(cicloDto);
         salvarMaterias(cicloDto, salvarCiclo(cicloDto));
 
-        return ResponseEntity.ok(cicloDto);
+        return cicloDto;
     }
 
     private void preValidate(CicloDTO cicloDto) {

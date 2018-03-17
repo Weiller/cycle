@@ -1,6 +1,6 @@
 package br.com.cycle.resource;
 
-import br.com.cycle.dto.MateriaDTO;
+import br.com.cycle.entity.dto.MateriaDTO;
 import br.com.cycle.service.EstudoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;

@@ -1,5 +1,8 @@
 package br.com.cycle.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.Column;
@@ -16,6 +19,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+@EqualsAndHashCode
+@Getter
+@Setter
 @Entity
 @Table(name = "CICLO", schema = "CYCLE")
 @SequenceGenerator(name = "SQ_CICLO", sequenceName = "CYCLE.SQ_CICLO", allocationSize = 1, initialValue = 1)
@@ -47,82 +54,4 @@ public class Ciclo {
 
     @Column(name = "data_ultimo_estudo")
     private LocalDateTime dataUltimoEstudo;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Long getTotalHora() {
-        return totalHora;
-    }
-
-    public void setTotalHora(Long totalHora) {
-        this.totalHora = totalHora;
-    }
-
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public List<Materia> getMaterias() {
-        return materias;
-    }
-
-    public void setMaterias(List<Materia> materias) {
-        this.materias = materias;
-    }
-
-    public Long getHorasEstudadas() {
-        return horasEstudadas;
-    }
-
-    public void setHorasEstudadas(Long horasEstudadas) {
-        this.horasEstudadas = horasEstudadas;
-    }
-
-    public LocalDateTime getDataUltimoEstudo() {
-        return dataUltimoEstudo;
-    }
-
-    public void setDataUltimoEstudo(LocalDateTime dataUltimoEstudo) {
-        this.dataUltimoEstudo = dataUltimoEstudo;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Ciclo ciclo = (Ciclo) o;
-
-        if (id != null ? !id.equals(ciclo.id) : ciclo.id != null) return false;
-        if (nome != null ? !nome.equals(ciclo.nome) : ciclo.nome != null) return false;
-        if (totalHora != null ? !totalHora.equals(ciclo.totalHora) : ciclo.totalHora != null) return false;
-        return dataCriacao != null ? dataCriacao.equals(ciclo.dataCriacao) : ciclo.dataCriacao == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (nome != null ? nome.hashCode() : 0);
-        result = 31 * result + (totalHora != null ? totalHora.hashCode() : 0);
-        result = 31 * result + (dataCriacao != null ? dataCriacao.hashCode() : 0);
-        return result;
-    }
 }

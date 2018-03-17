@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.cycle.property.CycleProperty;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;

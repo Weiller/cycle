@@ -1,8 +1,9 @@
 package br.com.cycle.resource;
 
-import br.com.cycle.dto.CicloDTO;
+import br.com.cycle.entity.dto.CicloDTO;
 import br.com.cycle.repository.filter.CicloFilter;
 import br.com.cycle.service.CicloService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,17 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/ciclos")
 public class CicloResource {
 
-    @Autowired
     private CicloService cicloService;
 
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
     public ResponseEntity<CicloDTO> salvar(@Valid @RequestBody CicloDTO cicloDto){
-        return this.cicloService.salvar(cicloDto);
+        return ResponseEntity.ok(this.cicloService.salvar(cicloDto));
     }
 
     @GetMapping

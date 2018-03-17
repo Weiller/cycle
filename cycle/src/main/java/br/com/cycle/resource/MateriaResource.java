@@ -4,6 +4,7 @@ import br.com.cycle.entity.Materia;
 import br.com.cycle.event.RecursoCriadoEvent;
 import br.com.cycle.repository.MateriaRepository;
 import br.com.cycle.service.MateriaService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -22,19 +23,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/materias")
 public class MateriaResource {
 
-    @Autowired
     private MateriaRepository materiaRepository;
 
-    @Autowired
     private MateriaService materiaService;
 
-    @Autowired
     private ApplicationEventPublisher publisher;
-
 
     @GetMapping
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")

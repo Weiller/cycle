@@ -1,7 +1,7 @@
 package br.com.cycle.mapper;
 
-import br.com.cycle.dto.CicloDTO;
-import br.com.cycle.dto.MateriaDTO;
+import br.com.cycle.entity.dto.CicloDTO;
+import br.com.cycle.entity.dto.MateriaDTO;
 import br.com.cycle.entity.Ciclo;
 import br.com.cycle.entity.Materia;
 import br.com.cycle.util.TimeConverter;
