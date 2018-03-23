@@ -45,7 +45,6 @@ export class SegurancaService {
             return Promise.reject('Usuário ou senha inválido.');
           }
         }
-
         return Promise.reject(error);
       });
   }

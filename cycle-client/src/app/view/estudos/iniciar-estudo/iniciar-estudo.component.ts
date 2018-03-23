@@ -20,7 +20,7 @@ export class IniciarEstudoComponent implements OnInit {
   @Input() minutos = 0;
   @Input() horas = 0;
   contador: any;
-  contagemIniciada: boolean;
+  contagemIniciada = false;
 
   constructor(private estudoService: EstudoService,
     private toasty: ToastyService) { }
@@ -74,6 +74,6 @@ export class IniciarEstudoComponent implements OnInit {
   }
 
   habilitarBotaoParar() {
-    return !this.materiaSelecionada.nome;
+    return !this.contagemIniciada;
   }
 }

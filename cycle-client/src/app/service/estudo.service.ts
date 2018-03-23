@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { Materia } from './../entity/materia.entity';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
@@ -17,5 +17,4 @@ export class EstudoService {
     return this.http.put(`${this.url}/${materia.id}`, materia).map(() => {
     }).catch(error => Observable.throw(error));
   }
-
 }

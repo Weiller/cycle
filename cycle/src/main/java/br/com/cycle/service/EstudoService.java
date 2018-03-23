@@ -7,6 +7,8 @@ import br.com.cycle.mapper.MateriaMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @AllArgsConstructor
 @Service
 public class EstudoService {
@@ -25,7 +27,13 @@ public class EstudoService {
     }
 
     private void salvarCicloEstudo(Ciclo ciclo) {
-        long totalHorasEstudadas = ciclo.getMaterias().stream().mapToLong(Materia::getHorasEstudadas).sum();
+        long totalHorasEstudadas = ciclo.getMaterias().stream().mapToLong(materia -> {
+            if(Objects.nonNull(materia.getHorasEstudadas())) {
+                return materia.getHorasEstudadas();
+            }
+
+            return 0;
+        }).sum();
 
         ciclo.setHorasEstudadas(totalHorasEstudadas);
         cicloService.salvarCiclo(ciclo);

@@ -1,5 +1,5 @@
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { CicloForm } from './../ciclo-cadastro/ciclo.form';
@@ -23,6 +23,7 @@ export class CadastroGeralCicloComponent implements OnInit {
     private toasty: ToastyService,
     private handleError: ErrorHandlerService,
     private route: ActivatedRoute,
+    private router: Router,
     private title: Title) { }
 
   ciclo: Ciclo = new Ciclo();
@@ -107,6 +108,7 @@ export class CadastroGeralCicloComponent implements OnInit {
     const cicloDTO = this.preencherCicloDto();
     this.cicloService.cadastrar(cicloDTO).subscribe(response => {
       this.toasty.success('Ciclo cadastrado com sucesso.');
+      this.router.navigate(['/ciclos']);
     }, error => {
       if (error.json().mensagemUsuario) {
         this.handleError.handle(error.json().mensagemUsuario);
@@ -120,6 +122,7 @@ export class CadastroGeralCicloComponent implements OnInit {
     const cicloDTO = this.preencherCicloDto();
     this.cicloService.alterar(cicloDTO).subscribe(response => {
       this.toasty.success('Ciclo alterado com sucesso.');
+      this.router.navigate(['/ciclos']);
     }, error => {
       if (error.json().mensagemUsuario) {
         this.handleError.handle(error.json().mensagemUsuario);

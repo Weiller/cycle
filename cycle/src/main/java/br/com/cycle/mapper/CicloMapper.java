@@ -38,7 +38,7 @@ public class CicloMapper {
         ciclo.setNome(cicloDto.getNomeCiclo());
         ciclo.setTotalHora(TimeConverter.horasEmSegundos(cicloDto.getTotalHoras()));
 
-        if(Objects.nonNull(cicloDto.getHorasEstudadas())) {
+        if (Objects.nonNull(cicloDto.getHorasEstudadas())) {
             ciclo.setHorasEstudadas(TimeConverter.horasEmSegundos(cicloDto.getHorasEstudadas()));
         }
 
@@ -104,7 +104,7 @@ public class CicloMapper {
     private static void preencherHorasEstudos(Ciclo ciclo, CicloDTO cicloDto) {
         cicloDto.setTotalHoras(TimeConverter.segundosEmHoras(ciclo.getTotalHora()));
 
-        if(Objects.nonNull(ciclo.getHorasEstudadas())) {
+        if (Objects.nonNull(ciclo.getHorasEstudadas())) {
             cicloDto.setHorasEstudadas(TimeConverter.segundosEmHoras(ciclo.getHorasEstudadas()));
         }
     }

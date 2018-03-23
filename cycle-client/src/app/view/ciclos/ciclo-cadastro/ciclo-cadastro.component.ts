@@ -17,7 +17,6 @@ export class CicloCadastroComponent implements OnInit {
 
   constructor(private cicloService: CicloService,
     private toasty: ToastyService,
-    private router: Router,
     private route: ActivatedRoute,
     private handleError: ErrorHandlerService) {
     this.cicloForm = new CicloForm();

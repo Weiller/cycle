@@ -15,15 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/tokens")
 public class TokenResource {
 
+    public static final String REFRESH_TOKEN = "refreshToken";
+    
     @Autowired
     private CycleProperty cycleProperty;
 
     @DeleteMapping("/revoke")
     public void revoke(HttpServletRequest req, HttpServletResponse resp) {
-        Cookie cookie = new Cookie("refreshToken", null);
+        Cookie cookie = new Cookie(REFRESH_TOKEN, null);
         cookie.setHttpOnly(cycleProperty.getSeguranca().isEnableHttps());
         cookie.setSecure(false);
-        cookie.setPath(req.getContextPath()+"/oauth/token");
+        cookie.setPath(req.getContextPath() + "/oauth/token");
         cookie.setMaxAge(0);
 
         resp.addCookie(cookie);

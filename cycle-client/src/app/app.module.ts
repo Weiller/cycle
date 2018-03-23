@@ -1,3 +1,4 @@
+import { UsuariosModule } from './view/usuarios/usuarios.module';
 import { InfoService } from './service/info.service';
 import { SharedModule } from 'primeng/primeng';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,6 +25,7 @@ import { TimerPipe } from './pipe/timer.pipe';
     SegurancaModule,
     EstudosModule,
     CoreModule,
+    UsuariosModule,
     SharedModule,
     CiclosModule,
     AppRoutingModule

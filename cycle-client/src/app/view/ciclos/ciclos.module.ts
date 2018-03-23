@@ -1,3 +1,4 @@
+import { TimerPipe } from './../../pipe/timer.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +32,10 @@ import { InputTextModule, ButtonModule, InputMaskModule, DataTableModule, Fields
     CicloCadastroComponent,
     MateriasCicloComponent,
     CadastroGeralCicloComponent
+  ],
+
+  providers: [
+    TimerPipe
   ]
 })
 export class CiclosModule { }

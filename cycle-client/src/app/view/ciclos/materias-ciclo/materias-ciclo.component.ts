@@ -1,3 +1,4 @@
+import { TimerPipe } from './../../../pipe/timer.pipe';
 import { ToastyService } from 'ng2-toasty';
 import { ValidacaoFormException } from './../../../exception/validacao.form.exception';
 import { Materia } from './../../../entity/materia.entity';
@@ -24,7 +25,8 @@ export class MateriasCicloComponent implements OnInit {
 
   materia = new Materia();
   constructor(private toasty: ToastyService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private timer: TimerPipe) { }
 
   ngOnInit() {
     this.formGroup = this.fb.group({
@@ -82,6 +84,8 @@ export class MateriasCicloComponent implements OnInit {
 
     if (index !== -1) {
       this.materias.splice(index, 1);
+      const horaEstudoFormatada = this.timer.transform(materia.horasEstudoCiclo);
+      materia.horasEstudoCiclo = horaEstudoFormatada;
       this.materia = materia;
       this.materiaAlterada.emit(materia);
     }

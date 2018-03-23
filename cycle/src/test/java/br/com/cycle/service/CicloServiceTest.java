@@ -44,20 +44,20 @@ public class CicloServiceTest {
     }
 
     @Test
-    public void testSalvarCiclo(){
+    public void testSalvarCiclo() {
         cicloService.salvarCiclo(ciclo);
         verify(cicloRepository).save(ciclo);
     }
 
     @Test(expected = NegocioException.class)
-    public void testSalvarHorasInvalidas(){
+    public void testSalvarHorasInvalidas() {
         preencherCiclo();
         cicloDTO.setTotalHoras("10:00");
         cicloService.salvar(cicloDTO);
     }
 
     @Test
-    public void testSalvarHorasValidas(){
+    public void testSalvarHorasValidas() {
         preencherCiclo();
         cicloDTO.setTotalHoras("20:00");
         cicloService.salvar(cicloDTO);

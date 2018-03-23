@@ -5,7 +5,7 @@ import br.com.cycle.entity.dto.MateriaDTO;
 import br.com.cycle.event.RecursoCriadoEvent;
 import br.com.cycle.mapper.MateriaMapper;
 import br.com.cycle.service.MateriaService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,19 +23,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("/materias")
 public class MateriaResource {
 
+    @Autowired
     private MateriaService materiaService;
 
+    @Autowired
     private ApplicationEventPublisher publisher;
 
     @GetMapping
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
     public List<MateriaDTO> buscarTodos() {
-      return materiaService.buscarTodos();
+        return materiaService.buscarTodos();
     }
 
     @GetMapping("/{id}")
@@ -46,7 +47,7 @@ public class MateriaResource {
 
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
-    public ResponseEntity<MateriaDTO> salvar(@Valid @RequestBody Materia materia, HttpServletResponse response){
+    public ResponseEntity<MateriaDTO> salvar(@Valid @RequestBody Materia materia, HttpServletResponse response) {
         MateriaDTO materiaSalva = materiaService.salvar(materia);
 
         publisher.publishEvent(new RecursoCriadoEvent(this, response, materiaSalva.getId()));
@@ -56,13 +57,13 @@ public class MateriaResource {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
-    public MateriaDTO atualizar(@PathVariable Long id, @Valid @RequestBody Materia materia){
+    public MateriaDTO atualizar(@PathVariable Long id, @Valid @RequestBody Materia materia) {
         return materiaService.atualizar(id, materia);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_GERAL') and #oauth2.hasScope('write')")
-    public MateriaDTO deletar(@PathVariable Long id){
+    public MateriaDTO deletar(@PathVariable Long id) {
         return materiaService.deletar(id);
     }
 }

@@ -5,12 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimerPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
+  public transform(value: any, args?: any): any {
     if (value) {
       const arrayHoras = value.split(':');
+      const horasSemZero = Number(arrayHoras[0]);
+      const minutosSemZero = Number(arrayHoras[1]);
 
-      let horas = arrayHoras[0] < 10 ? `0${arrayHoras[0]}` : arrayHoras[0];
-      let minutos = arrayHoras[1] < 10 ? `0${arrayHoras[1]}` : arrayHoras[1];
+      let horas = horasSemZero < 10 ? `0${horasSemZero}` : horasSemZero;
+      let minutos = minutosSemZero[1] < 10 ? `0${minutosSemZero}` : minutosSemZero;
 
       if (arrayHoras[0] == 0) {
         horas = '00';

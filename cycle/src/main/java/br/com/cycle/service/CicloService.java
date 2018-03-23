@@ -41,7 +41,7 @@ public class CicloService {
         }
     }
 
-    private Ciclo salvarCiclo(CicloDTO cicloDto) {
+    public Ciclo salvarCiclo(CicloDTO cicloDto) {
         return cicloRepository.save(CicloMapper.cicloDtoToCiclo(cicloDto));
     }
 
